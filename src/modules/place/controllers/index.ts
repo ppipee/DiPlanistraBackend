@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'
 import axios from 'axios'
+import { Request, Response } from 'express'
 
 export const getWongnaiPlace = async (req: Request, res: Response) => {
 	const data = await axios.get(

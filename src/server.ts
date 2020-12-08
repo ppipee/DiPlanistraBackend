@@ -18,4 +18,7 @@ app.use(cors)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.listen(PORT, () => console.log('server run listening on port 8000'))
+app.listen(PORT, () => {
+	// eslint-disable-next-line no-console
+	console.log('server run listening on port 8000')
+})

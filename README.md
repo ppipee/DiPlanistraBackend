@@ -1,3 +1,3 @@
-# Di-Planistra
+# Di-Planistra Backend
 
-new version of Planistral >> iwgu.netlify.app
+Di-Planistra server
