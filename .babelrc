@@ -1,0 +1,15 @@
+{
+	"presets": ["@babel/preset-env", "@babel/preset-typescript"],
+	"sourceType": "unambiguous",
+	"plugins": [
+		[
+			"module-resolver",
+			{
+				"root": ["./src"]
+			}
+		],
+		["@babel/plugin-transform-runtime"],
+		"babel-plugin-lodash",
+		"@babel/plugin-proposal-export-default-from"
+	]
+}
