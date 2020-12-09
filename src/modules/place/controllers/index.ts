@@ -11,4 +11,7 @@ export const getWongnaiPlace = (req: Request, res: Response) => {
 
 			res.send(placeData)
 		})
+		.catch((err) => {
+			res.send(err)
+		})
 }
