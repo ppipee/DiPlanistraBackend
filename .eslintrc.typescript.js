@@ -39,7 +39,7 @@ module.exports = {
 		'prefer-destructuring': [0],
 		'no-use-before-define': [0], // define function after function that use it
 		'no-return-assign': [0], // Arrow function should not return assignment eg. cant do this -> ref={el => (this.picture = el)}
-		'no-console': [2],
+		'no-console': [0],
 		'object-shorthand': [0], // Expected method shorthand
 		'func-names': [0], // functions must have a name
 		'no-restricted-properties': [1], // Math.pow -> exponentiation operator (**) instead
