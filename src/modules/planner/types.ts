@@ -1,5 +1,7 @@
 import { BasicPhoto, LatLng } from 'modules/place/types/common'
 
+import { UserResponse } from '../user/types'
+
 export interface InitPlanner {
 	name: string
 	startDate: Date
@@ -8,12 +10,12 @@ export interface InitPlanner {
 
 export interface Planner extends InitPlanner {
 	id?: string
-	dateLength: string
+	dateLength: number
 	planner: PlannerInfo[]
 	style: PlannerStyle
-	writer: string
+	writer: UserResponse
 	rating: number
-	public?: boolean
+	isPublic?: boolean
 }
 
 export interface PlannerInfo {

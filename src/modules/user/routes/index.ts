@@ -9,8 +9,10 @@ const router = express.Router()
 
 router.get('/', auth, adminAuth, getUsers)
 router.get('/:userId', getUser)
+
 router.post('/register', createUser)
 router.post('/login', login)
-router.delete('/:userId', deleteUser)
+
+router.delete('/:userId', auth, adminAuth, deleteUser)
 
 export default router

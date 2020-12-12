@@ -4,6 +4,6 @@ import { Planner } from '../types'
 
 import { plannerSchema } from './schemas'
 
-type PlannerDoc = Planner & Document
+export type PlannerDoc = Omit<Planner, 'writer'> & { writerId: String } & Document
 
 export const PlannerModel = mongoose.model<PlannerDoc>('Planner', plannerSchema)

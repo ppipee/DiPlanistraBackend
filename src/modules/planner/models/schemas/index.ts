@@ -1,7 +1,5 @@
 import mongoose, { SchemaDefinition } from 'mongoose'
 
-import { userSchema } from 'modules/user/models/schemas'
-
 const Schema = mongoose.Schema
 
 const activityHour: SchemaDefinition = {
@@ -31,9 +29,9 @@ export const plannerSchema = new Schema({
 	startDate: Date,
 	endDate: Date,
 	dateLength: Number,
-	writer: userSchema,
+	writerId: String,
 	rating: Number,
-	public: Boolean,
+	isPublic: Boolean,
 	planner: [plannerInfo],
 	style: plannerStyle,
 })
