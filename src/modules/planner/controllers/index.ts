@@ -66,7 +66,7 @@ export const getPlanner = async (req: Request, res: Response) => {
 		res.status(403).send({ message: 'this planner is not public' })
 	}
 
-	res.status(200).send({ data: getPlannerData(planner, user) })
+	res.status(200).send(getPlannerData(planner, user))
 }
 
 export const getPlanners = async (req: Request, res: Response) => {
@@ -80,7 +80,7 @@ export const getPlanners = async (req: Request, res: Response) => {
 
 	const plannersData = planners.map((planner) => getPlannerData(planner, user))
 
-	res.status(200).send({ data: plannersData })
+	res.status(200).send(plannersData)
 }
 
 export const updatePlanner = async (req: Request, res: Response) => {
@@ -113,12 +113,12 @@ export const updatePlanner = async (req: Request, res: Response) => {
 		res.status(403).send({ message: "you don't have permission for edit planner" })
 	}
 
-	res.status(200).send({ data: getPlannerData({ ...newPlanner, ...plannerData } as PlannerDoc, user) })
+	res.status(200).send(getPlannerData({ ...newPlanner, ...plannerData } as PlannerDoc, user))
 }
 
 export const deletePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
-	const user = getUserData(req.user as UserDoc)
+	// const user = getUserData(req.user as UserDoc)
 
 	if (!plannerId) {
 		res.status(400).send({ message: 'required plannerId' })

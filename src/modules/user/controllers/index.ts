@@ -52,7 +52,7 @@ export const getUsers = async (req: Request, res: Response) => {
 		res.status(404).send({ message: error })
 	}
 
-	res.status(200).send({ data: usersData })
+	res.status(200).send(usersData)
 }
 
 export const getUser = async (req: Request, res: Response) => {
@@ -68,7 +68,7 @@ export const getUser = async (req: Request, res: Response) => {
 		res.status(404).send({ message: error })
 	}
 
-	res.status(200).send({ data: getUserData(user) })
+	res.status(200).send(getUserData(user))
 }
 
 export const deleteUser = async (req: Request, res: Response) => {
