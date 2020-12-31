@@ -11,12 +11,16 @@ export interface InitPlanner {
 export interface Planner extends InitPlanner {
 	id?: string
 	dateLength: number
-	planner: PlannerInfo[]
+	planners: PlannerInfo[]
 	style: PlannerStyle
 	writer: UserResponse
 	rating: number
 	isPublic?: boolean
+	createdAt?: Date
+	updatedAt?: Date
 }
+
+export type PlannerPreview = Omit<Planner, 'planners' | 'style'>
 
 export interface PlannerInfo {
 	day: number

@@ -27,7 +27,7 @@ export const createUser = async (req: Request, res: Response) => {
 
 	const [user, token] = getUserWithToken(databaseUser, process.env.JWT_SECRET)
 
-	res.status(201).send({ data: { user, token } })
+	res.status(201).send({ user, token })
 }
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 		if (databaseUser) {
 			const [user, token] = getUserWithToken(databaseUser, process.env.JWT_SECRET)
 
-			return res.status(200).send({ data: { user, token } })
+			return res.status(200).send({ user, token })
 		} else {
 			return res.status(422).send(info)
 		}

@@ -43,9 +43,7 @@ export const createPlanner = async (req: Request, res: Response) => {
 
 	const plannerData = getPlannerData(planner, user)
 
-	return res.status(201).send({
-		data: plannerData,
-	})
+	return res.status(201).send(plannerData)
 }
 
 export const getPlanner = async (req: Request, res: Response) => {
@@ -77,15 +75,15 @@ export const getPlanners = async (req: Request, res: Response) => {
 	if (error || !planners || isEmpty(planners)) {
 		res.status(404).send({ message: error || 'not found planners' })
 	}
-
-	const plannersData = planners.map((planner) => getPlannerData(planner, user))
+	console.log(planners[0])
+	const plannersData = planners.map((planner) => getPlannerData(planner, user, true))
 
 	res.status(200).send(plannersData)
 }
 
 export const updatePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
-	const { name, startDate, endDate, dateLength, rating, isPublic, planner, style }: Planner = req.body
+	const { name, startDate, endDate, dateLength, rating, isPublic, planners, style }: Planner = req.body
 	const user = getUserData(req.user as UserDoc)
 
 	const plannerData = filterObjectExistingValues({
@@ -95,7 +93,7 @@ export const updatePlanner = async (req: Request, res: Response) => {
 		dateLength,
 		rating,
 		isPublic,
-		planner,
+		planners,
 		style,
 	})
 
@@ -103,22 +101,22 @@ export const updatePlanner = async (req: Request, res: Response) => {
 		res.status(400).send({ message: 'required plannerId' })
 	}
 
-	const [error, newPlanner] = await to(Promise.resolve(PlannerModel.findByIdAndUpdate(plannerId, plannerData)))
+	const [error, planner] = await to(Promise.resolve(PlannerModel.findByIdAndUpdate(plannerId, plannerData)))
 
-	if (error || !newPlanner) {
+	if (error || !planner) {
 		res.status(404).send({ message: error || 'not found planner' })
 	}
 
-	if (!isAccessPlanner(req.user as UserDoc, newPlanner)) {
-		res.status(403).send({ message: "you don't have permission for edit planner" })
+	if (!isAccessPlanner(req.user as UserDoc, planner)) {
+		res.status(403).send({ message: "you don't have permission to edit planner" })
 	}
 
-	res.status(200).send(getPlannerData({ ...newPlanner, ...plannerData } as PlannerDoc, user))
+	const oldPlanner = ({ ...planner } as any)._doc as PlannerDoc
+	res.status(200).send(getPlannerData({ ...oldPlanner, ...plannerData } as PlannerDoc, user))
 }
 
 export const deletePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
-	// const user = getUserData(req.user as UserDoc)
 
 	if (!plannerId) {
 		res.status(400).send({ message: 'required plannerId' })

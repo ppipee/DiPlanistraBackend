@@ -8,7 +8,7 @@ const activityHour: SchemaDefinition = {
 }
 
 const activityPlan: SchemaDefinition = {
-	hour: activityHour,
+	hour: { type: activityHour, _id: false },
 	placeId: String,
 }
 
@@ -16,7 +16,11 @@ const plannerInfo: SchemaDefinition = {
 	day: Number,
 	title: String,
 	description: String,
-	activities: [activityPlan],
+	activities: {
+		type: [activityPlan],
+		index: true,
+		_id: false,
+	},
 }
 
 const plannerStyle: SchemaDefinition = {
@@ -24,14 +28,21 @@ const plannerStyle: SchemaDefinition = {
 	showCover: Boolean,
 }
 
-export const plannerSchema = new Schema({
-	name: String,
-	startDate: Date,
-	endDate: Date,
-	dateLength: Number,
-	writerId: String,
-	rating: Number,
-	isPublic: Boolean,
-	planner: [plannerInfo],
-	style: plannerStyle,
-})
+export const plannerSchema = new Schema(
+	{
+		name: String,
+		startDate: Date,
+		endDate: Date,
+		dateLength: Number,
+		writerId: String,
+		rating: Number,
+		isPublic: Boolean,
+		planners: {
+			type: [plannerInfo],
+			index: true,
+			_id: false,
+		},
+		style: { type: plannerStyle, _id: false },
+	},
+	{ timestamps: true },
+)
