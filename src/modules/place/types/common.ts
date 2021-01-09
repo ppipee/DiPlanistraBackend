@@ -11,12 +11,6 @@ export interface BasicPhoto {
 	largeUrl?: string
 }
 
-export interface LocalizeName {
-	primary: string
-	thai?: string
-	english?: string
-}
-
 export interface LatLng {
 	lat: number
 	lng: number
@@ -31,4 +25,9 @@ export interface Time {
 export interface NameValue<T> {
 	name: string
 	value: T
+}
+
+export interface IdName {
+	id: number
+	name: string
 }
