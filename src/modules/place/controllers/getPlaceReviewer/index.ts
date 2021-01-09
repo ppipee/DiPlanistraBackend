@@ -14,7 +14,6 @@ const getPlaceReviewer = async (req: Request, res: Response) => {
 	const query = req.query
 	const baseUrl = `${BASE_BUSINESSES_URL}/${publicId}/reviews.json`
 	const url = buildUrlWithParams(baseUrl, query)
-	console.log(url)
 
 	const [error, data] = await to(got.get(url))
 
