@@ -26,7 +26,7 @@ const updatePlanner = async (req: Request, res: Response) => {
 	}
 
 	const activitiesMapper = getActivitiesMapper(plannerPlain)
-	const plannersUpdate = planners.map((planner) => ({
+	const plannersUpdate = (planners || []).map((planner) => ({
 		...planner,
 		activities: activitiesMapper[planner.day],
 	}))
