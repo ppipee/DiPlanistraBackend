@@ -38,6 +38,7 @@ export default function resolvePlacePreview(data: Place) {
 		displayName: data.displayName,
 		defaultPhoto: data.defaultPhoto,
 		coverPhoto: data.coverPhoto,
+		mainPhoto: data.mainPhoto,
 		rating: data.rating,
 		distance: data.distance,
 		statistic: statistic,

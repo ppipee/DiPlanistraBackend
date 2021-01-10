@@ -46,6 +46,7 @@ export interface PlacePreview {
 	publicId: string
 	displayName: string
 	defaultPhoto: BasicPhoto
+	mainPhoto: BasicPhoto
 	coverPhoto?: BasicPhoto
 	rating?: number
 	distance?: number

@@ -10,6 +10,8 @@ const activityHour: SchemaDefinition = {
 const activityPlan: SchemaDefinition = {
 	hour: { type: activityHour, _id: false },
 	placeId: String,
+	memo: String,
+	distance: String,
 }
 
 const plannerInfo: SchemaDefinition = {
@@ -19,7 +21,6 @@ const plannerInfo: SchemaDefinition = {
 	activities: {
 		type: [activityPlan],
 		index: true,
-		_id: false,
 	},
 }
 

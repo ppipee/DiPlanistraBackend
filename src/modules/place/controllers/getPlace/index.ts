@@ -17,7 +17,6 @@ const getPlace = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		console.log(error)
 		res.send(error)
 	}
 

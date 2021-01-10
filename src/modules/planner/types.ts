@@ -1,4 +1,4 @@
-import { BasicPhoto, LatLng } from 'modules/place/types/common'
+import { BasicPhoto, LatLng, NameValue } from 'modules/place/types/common'
 import { AttractionInformation, Category, WorkingHourStatus } from 'modules/place/types/place'
 import { UserResponse } from 'modules/user/types'
 
@@ -13,7 +13,7 @@ export interface Planner extends InitPlanner {
 	dateLength: number
 	planners: PlannerInfo[]
 	style: PlannerStyle
-	writer: UserResponse
+	writer?: UserResponse
 	rating: number
 	isPublic?: boolean
 	createdAt?: Date
@@ -30,19 +30,26 @@ export interface PlannerInfo {
 }
 
 export interface ActivityPlan {
+	_id?: string
+	id?: string
 	hour: ActivityHour
-	place?: PlannerPlace
-	placeId: string
+	place?: ActivityPlace
+	placeId?: string
 	memo?: string
 	distance?: number
 }
 
-export interface PlannerPlace {
-	placeId: string
+export interface ActivityPlace {
+	publicId: string
 	name: string
 	coordinate: LatLng
 	defaultPhoto: BasicPhoto
 	mainPhoto: BasicPhoto
+	categories: Category[]
+	rating: number
+	priceRange?: NameValue<number> // phase3
+	workingHoursStatus: WorkingHourStatus
+	entryFee?: AttractionInformation['entryFee']
 }
 
 export interface ActivityHour {
@@ -60,17 +67,4 @@ export interface EditActivity {
 	hour: ActivityHour
 	placeId: string // publicId
 	memo?: string
-}
-
-export interface ActivityPlace {
-	publicId: string
-	name: string
-	coordinate: LatLng
-	defaultPhoto: BasicPhoto
-	mainPhoto: BasicPhoto
-	categories: Category[]
-	rating: number
-	priceRange?: number // phase3
-	workingHoursStatus: WorkingHourStatus
-	entryFee?: AttractionInformation['entryFee']
 }

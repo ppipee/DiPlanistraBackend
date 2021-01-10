@@ -14,8 +14,9 @@ const getBusinesses = async (req: Request, res: Response) => {
 	const query = req.query
 	const newQuery = convertObjectKey(
 		query,
-		['rating', 'distance', 'lat', 'lng'],
+		['search', 'rating', 'distance', 'lat', 'lng'],
 		[
+			'q',
 			'features.ratingRange',
 			'spatialInfo.radius',
 			'spatialInfo.coordinate.latitude',
