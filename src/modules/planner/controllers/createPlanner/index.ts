@@ -32,12 +32,12 @@ const createPlanner = async (req: Request, res: Response) => {
 		endDate,
 		dateLength,
 		writerId: user.id,
-		planner: plannerInfo,
+		planners: plannerInfo,
 	})
 
 	await planner.save()
 
-	const plannerData = await getPlannerData((planner as unknown) as PlannerPlain, user)
+	const plannerData = await getPlannerData(planner as PlannerPlain, user)
 
 	return res.status(201).send(plannerData)
 }

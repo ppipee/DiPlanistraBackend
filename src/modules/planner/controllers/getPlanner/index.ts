@@ -26,7 +26,6 @@ const getPlanner = async (req: Request, res: Response) => {
 	}
 
 	const plannerData = await getPlannerData(planner, user)
-	console.log(plannerData.planners)
 
 	res.status(200).send(plannerData)
 }

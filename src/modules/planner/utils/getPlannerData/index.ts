@@ -2,7 +2,7 @@ import { omit } from 'lodash'
 
 import { UserResponse } from 'modules//user/types'
 import { PlannerPlain } from 'modules/planner/models'
-import { ActivityPlace, Planner, PlannerPreview } from 'modules/planner/types'
+import { ActivityPlace, Planner } from 'modules/planner/types'
 
 import getActivityPlace from '../getActivityPlace'
 import getPlannerPreviewData from '../getPlannerPreviewData'
@@ -24,10 +24,13 @@ export default async function getPlannerData(plannerPlain: PlannerPlain, user: U
 	const planners = plannerPlain.planners.map((planner) => {
 		const activities = planner.activities.map((activity) => {
 			const place = placesData[index] as ActivityPlace
-			const newActivity = omit(activity, 'placeId')
+
+			const id = activity._id
+			const newActivity = omit(activity, ['placeId', '_id'])
+
 			index += 1
 
-			return { ...newActivity, place }
+			return { ...newActivity, place, id }
 		})
 
 		return { ...planner, activities }
