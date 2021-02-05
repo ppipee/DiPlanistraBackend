@@ -6,6 +6,6 @@ import auth from 'modules/user/middleware/auth'
 const router = express.Router()
 
 router.get('/favoritePlaces', auth, getFavoritePlaces)
-router.get('/favoritePlaces', auth, saveFavoritePlace)
+router.post('/favoritePlaces', auth, saveFavoritePlace)
 
 export default router
