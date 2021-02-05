@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+import { favoritePlaceSchema } from 'modules/me/models/schemas'
+
 const Schema = mongoose.Schema
 
 export const userSchema = new Schema(
@@ -20,6 +22,9 @@ export const userSchema = new Schema(
 			required: true,
 		},
 		role: String,
+		favoritePlaces: {
+			type: [favoritePlaceSchema],
+		},
 	},
 	{ timestamps: true },
 )

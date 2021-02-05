@@ -1,6 +1,7 @@
 import express from 'express'
 
 import { getBusinesses, getPlace, getPlaceReviewer } from 'modules/place/controllers'
+import auth from 'modules/user/middleware/auth'
 
 const router = express.Router()
 

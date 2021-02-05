@@ -1,5 +1,6 @@
 import { BasicPhoto, LatLng, NameValue } from 'modules/place/types/common'
 import { AttractionInformation, Category, WorkingHourStatus } from 'modules/place/types/place'
+// eslint-disable-next-line import/no-cycle
 import { UserResponse } from 'modules/user/types'
 
 export interface InitPlanner {
@@ -40,6 +41,7 @@ export interface ActivityPlan {
 }
 
 export interface ActivityPlace {
+	id?: string
 	publicId: string
 	name: string
 	coordinate: LatLng
