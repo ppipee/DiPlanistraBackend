@@ -30,7 +30,7 @@ const updateActivity = async (req: Request, res: Response) => {
 	const activityIndex = plannerInfo.activities.findIndex((activity) => activity._id.toString() === activityId)
 
 	if (activityIndex < 0) {
-		return res.send(404).send({ message: 'actvity not found' })
+		return res.send(404).send({ message: 'activity not found' })
 	}
 
 	const activity = plannerInfo.activities[activityIndex]

@@ -1,15 +1,17 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
+import { omit } from 'lodash'
 
 import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { EditActivity } from 'modules/planner/types'
+import getActivityPlace from 'modules/planner/utils/getActivityPlace'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
 import { UserDoc } from 'modules/user/models'
 
 const createActivity = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
 	const { day } = req.query
-	const activity: EditActivity = req.body
+	const activityData: EditActivity = req.body
 	const user = req.user as UserDoc
 
 	if (!plannerId) {
@@ -24,6 +26,10 @@ const createActivity = async (req: Request, res: Response) => {
 
 	const plannerInfoIndex = plannerPlain.planners.findIndex((planner) => planner.day === +day)
 
+	const activity = {
+		...omit(activityData, 'placeId'),
+		place: getActivityPlace(activityData.placeId, user.favoritePlaces),
+	}
 	plannerPlain.planners[plannerInfoIndex].activities.push(activity)
 
 	const [error, plannerPlainUpdated] = await to<PlannerPlain>(
