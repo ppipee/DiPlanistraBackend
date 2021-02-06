@@ -56,7 +56,7 @@ const updateActivity = async (req: Request, res: Response) => {
 
 	const plannerData = await getPlannerData(plannerPlainUpdated, user)
 
-	return res.status(201).send(plannerData)
+	return res.send(plannerData)
 }
 
 export default updateActivity

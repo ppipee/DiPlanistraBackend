@@ -1,5 +1,6 @@
 import mongoose, { SchemaDefinition } from 'mongoose'
 
+import { favoritePlaceSchema } from 'modules/me/models/schemas'
 import { UserModel } from 'modules/user/models'
 
 const Schema = mongoose.Schema
@@ -11,7 +12,7 @@ const activityHour: SchemaDefinition = {
 
 const activityPlan: SchemaDefinition = {
 	hour: { type: activityHour, _id: false },
-	placeId: String,
+	place: favoritePlaceSchema,
 	memo: String,
 	distance: String,
 }
