@@ -16,6 +16,7 @@ export default function resolveActivityPlace(place: Place) {
 		priceRange: place.priceRange,
 		workingHoursStatus: place.workingHoursStatus,
 		entryFee: place.attractionInformation?.entryFee,
+		numberOfReviews: place.statistic?.numberOfReviews,
 		isFavorite: true,
 	}
 

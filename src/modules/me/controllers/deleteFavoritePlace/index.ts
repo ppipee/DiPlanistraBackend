@@ -11,7 +11,7 @@ export default async function deleteFavoritePlace(req: Request, res: Response) {
 	const placeIndex = favoritePlaces.findIndex((place) => place.publicId === publicId)
 
 	if (placeIndex === -1) {
-		res.status(404).send('cannot file this place in favoritePlaces')
+		return res.status(404).send('cannot file this place in favoritePlaces')
 	}
 
 	favoritePlaces.splice(placeIndex, 1)
@@ -20,8 +20,8 @@ export default async function deleteFavoritePlace(req: Request, res: Response) {
 	)
 
 	if (error) {
-		res.status(502).send('cannot remove this place in database')
+		return res.status(502).send('cannot remove this place in database')
 	}
 
-	res.send({ favoritePlaces: userUpdated.favoritePlaces })
+	return res.send({ favoritePlaces: userUpdated.favoritePlaces })
 }

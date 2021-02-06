@@ -8,6 +8,7 @@ import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { PlannerInfo } from 'modules/planner/types'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
 import { UserDoc } from 'modules/user/models'
+import getUserData from 'modules/user/utils/getUserData'
 
 const createPlanner = async (req: Request, res: Response) => {
 	const { name, startDate, endDate } = req.body
@@ -17,7 +18,7 @@ const createPlanner = async (req: Request, res: Response) => {
 	}
 
 	const user = req.user as UserDoc
-	const dateLength = getDifferentTime(startDate, endDate)
+	const dateLength = getDifferentTime(startDate, endDate) + 1
 
 	const plannerInfo: PlannerInfo[] = range(dateLength).map((day) => ({
 		day: day + 1,
@@ -30,7 +31,7 @@ const createPlanner = async (req: Request, res: Response) => {
 		startDate,
 		endDate,
 		dateLength,
-		writerId: user.id,
+		writer: getUserData(user),
 		planners: plannerInfo,
 	})
 

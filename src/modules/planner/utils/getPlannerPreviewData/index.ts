@@ -1,8 +1,6 @@
-import { User, UserResponse } from 'modules//user/types'
 import { PlannerPlain } from 'modules/planner/models'
 import { PlannerPreview } from 'modules/planner/types'
 import { UserDoc } from 'modules/user/models'
-import getUserData from 'modules/user/utils/getUserData'
 
 export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user: UserDoc) {
 	const plannerPreview: PlannerPreview = {
@@ -15,7 +13,8 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user: 
 		isPublic: plannerPlain.isPublic,
 		createdAt: plannerPlain.createdAt,
 		updatedAt: plannerPlain.updatedAt,
-		writer: getUserData(user),
+		writer: plannerPlain.writer,
+		isOwner: plannerPlain.writer.id === user._id,
 	}
 
 	return plannerPreview

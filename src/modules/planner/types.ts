@@ -14,11 +14,12 @@ export interface Planner extends InitPlanner {
 	dateLength: number
 	planners: PlannerInfo[]
 	style: PlannerStyle
-	writer?: UserResponse
+	writer: UserResponse
 	rating: number
 	isPublic?: boolean
 	createdAt?: Date
 	updatedAt?: Date
+	isOwner: boolean
 }
 
 export type PlannerPreview = Omit<Planner, 'planners' | 'style'>
@@ -53,6 +54,7 @@ export interface ActivityPlace {
 	priceRange?: NameValue<number> // phase3
 	workingHoursStatus: WorkingHourStatus
 	entryFee?: AttractionInformation['entryFee']
+	numberOfReviews: number
 }
 
 export interface ActivityHour {
