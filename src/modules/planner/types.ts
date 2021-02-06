@@ -42,6 +42,7 @@ export interface ActivityPlan {
 
 export interface ActivityPlace {
 	id?: string
+	isFavorite?: boolean
 	publicId: string
 	name: string
 	coordinate: LatLng

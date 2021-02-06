@@ -1,8 +1,8 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
 
+import getFavoritePlace from 'modules/me/utils/getFavoritePlace'
 import { ActivityPlace } from 'modules/planner/types'
-import getActivityPlace from 'modules/planner/utils/getActivityPlace'
 import { UserDoc, UserModel } from 'modules/user/models'
 
 const saveFavoritePlace = async (req: Request, res: Response) => {
@@ -13,7 +13,13 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 		res.status(400).send('require publicId to save place to favorite places')
 	}
 
-	const placeData = (await getActivityPlace(publicId)) as ActivityPlace
+	const isPlaceInclude = !!favoritePlaces.find((favoritePlace) => favoritePlace.publicId === publicId)
+
+	if (isPlaceInclude) {
+		res.send({ favoritePlaces })
+	}
+
+	const placeData = (await getFavoritePlace(publicId)) as ActivityPlace
 
 	if (!placeData) {
 		res.status(404).send('not found place')
@@ -21,7 +27,7 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 
 	favoritePlaces.push(placeData)
 
-	const [error] = await to(
+	const [error, userUpdated] = await to(
 		Promise.resolve(UserModel.findByIdAndUpdate(id, { favoritePlaces }, { returnOriginal: false }).lean()),
 	)
 
@@ -29,7 +35,8 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 		res.status(502).send("can't store favorite place to database")
 	}
 
-	res.send({ message: `favorite ${placeData.id} success` })
+	res.statusMessage = `favorite ${placeData.publicId} success`
+	res.send({ favoritePlaces: userUpdated.favoritePlaces })
 }
 
 export default saveFavoritePlace

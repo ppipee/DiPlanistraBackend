@@ -6,10 +6,9 @@ import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { PlannerPreview } from 'modules/planner/types'
 import getPlannerPreviewData from 'modules/planner/utils/getPlannerPreviewData'
 import { UserDoc } from 'modules/user/models'
-import getUserData from 'modules/user/utils/getUserData'
 
 const getPlanners = async (req: Request, res: Response) => {
-	const user = getUserData(req.user as UserDoc)
+	const user = req.user as UserDoc
 
 	const [error, planners] = await to<PlannerPlain[]>(Promise.resolve(PlannerModel.find({}).lean()))
 

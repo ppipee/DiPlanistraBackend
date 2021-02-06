@@ -7,7 +7,7 @@ import getUserData from 'modules/user/utils/getUserData'
 
 const getUsers = async (req: Request, res: Response) => {
 	const [error, users] = await to(Promise.resolve(UserModel.find({})))
-	const usersData = users.map((user) => getUserData(user))
+	const usersData = users.map((user) => getUserData(user, true))
 
 	if (error || !users || isEmpty(users)) {
 		res.status(404).send({ message: error })

@@ -5,13 +5,12 @@ import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { EditActivity } from 'modules/planner/types'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
 import { UserDoc } from 'modules/user/models'
-import getUserData from 'modules/user/utils/getUserData'
 
 const updateActivity = async (req: Request, res: Response) => {
 	const { plannerId, activityId } = req.params
 	const { day } = req.query
 	const activityData: EditActivity = req.body
-	const user = getUserData(req.user as UserDoc)
+	const user = req.user as UserDoc
 
 	if (!plannerId) {
 		res.status(400).send({ message: 'required plannerId' })

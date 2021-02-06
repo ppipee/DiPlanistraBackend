@@ -7,7 +7,7 @@ export interface User {
 	name: string
 	password?: string
 	role: Role
-	favoritePlaces: ActivityPlace[]
+	favoritePlaces?: ActivityPlace[]
 }
 
 export type UserResponse = Omit<User, 'password' | 'favoritePlaces'>

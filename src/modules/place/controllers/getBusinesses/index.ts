@@ -9,8 +9,10 @@ import { BASE_BUSINESSES_URL } from 'modules/place/constants'
 import { Page } from 'modules/place/types/page'
 import { Place, PlacePreview } from 'modules/place/types/place'
 import resolvePlacePreview from 'modules/place/utils/resolvePlacePreview'
+import { UserDoc } from 'modules/user/models'
 
 const getBusinesses = async (req: Request, res: Response) => {
+	const user = req.user as UserDoc
 	const query = req.query
 	const newQuery = convertObjectKey(
 		query,
@@ -34,7 +36,7 @@ const getBusinesses = async (req: Request, res: Response) => {
 	}
 
 	const businessesPageData: Page<Place> = JSON.parse(data.body)
-	const businesses = businessesPageData.page.entities.map((review) => resolvePlacePreview(review))
+	const businesses = businessesPageData.page.entities.map((review) => resolvePlacePreview(review, user?.favoritePlaces))
 	const businessesPage: Page<PlacePreview> = {
 		page: {
 			...businessesPageData.page,

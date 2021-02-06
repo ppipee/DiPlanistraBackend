@@ -9,8 +9,8 @@ const router = express.Router()
 
 router.get('/', auth, adminAuth, getUsers)
 router.get('/:userId', getUser)
-router.get('/login', login)
 
+router.post('/login', login)
 router.post('/register', createUser)
 
 router.delete('/:userId', auth, adminAuth, deleteUser)

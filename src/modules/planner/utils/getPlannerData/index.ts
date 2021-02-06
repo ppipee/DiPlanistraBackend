@@ -1,24 +1,23 @@
 import { omit } from 'lodash'
 
-import { UserResponse } from 'modules//user/types'
 import { PlannerPlain } from 'modules/planner/models'
 import { ActivityPlace, Planner } from 'modules/planner/types'
+import { UserDoc } from 'modules/user/models'
 
 import getActivityPlace from '../getActivityPlace'
 import getPlannerPreviewData from '../getPlannerPreviewData'
 
-export default async function getPlannerData(plannerPlain: PlannerPlain, user: UserResponse): Promise<Planner> {
+export default async function getPlannerData(plannerPlain: PlannerPlain, user: UserDoc): Promise<Planner> {
 	const plannerPreview = getPlannerPreviewData(plannerPlain, user)
 
-	const activitiesMapper: string[] = [] // [{ placeId, i, j }]
+	const activitiesMapper = plannerPlain.planners.reduce(
+		(mapper, planner) => [...mapper, ...planner.activities.map((activity) => activity.placeId)],
+		[] as string[],
+	) // [placeId,...]
 
-	plannerPlain.planners.forEach((planner) => {
-		planner.activities.forEach((activity) => {
-			activitiesMapper.push(activity.placeId)
-		})
-	})
-
-	const placesData = await Promise.all(activitiesMapper.map((publicId) => getActivityPlace(publicId)))
+	const placesData = await Promise.all(
+		activitiesMapper.map((publicId) => Promise.resolve(getActivityPlace(publicId, user.favoritePlaces))),
+	)
 
 	let index = 0
 	const planners = plannerPlain.planners.map((planner) => {

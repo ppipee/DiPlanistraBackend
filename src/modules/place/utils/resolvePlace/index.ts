@@ -1,7 +1,8 @@
 import { Contact, Place } from 'modules/place/types/place'
 import resolvePlacePreview from 'modules/place/utils/resolvePlacePreview'
+import { ActivityPlace } from 'modules/planner/types'
 
-export default function resolvePlace(data: Place) {
+export default function resolvePlace(data: Place, userFavoritePlaces?: ActivityPlace[]) {
 	const _contact = data.contact
 	const contact: Contact = {
 		address: _contact?.address,
@@ -14,7 +15,7 @@ export default function resolvePlace(data: Place) {
 		homepage: _contact?.homepage,
 	}
 
-	const placePreview = resolvePlacePreview(data)
+	const placePreview = resolvePlacePreview(data, userFavoritePlaces)
 	const place: Place = {
 		...placePreview,
 		lng: data.lng,

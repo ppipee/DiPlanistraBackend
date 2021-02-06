@@ -6,10 +6,11 @@ import {
 	PlaceStatistic,
 	WorkingHourStatus,
 } from 'modules/place/types/place'
+import { ActivityPlace } from 'modules/planner/types'
 
 import resolveCategory from '../resolveCategory'
 
-export default function resolvePlacePreview(data: Place) {
+export default function resolvePlacePreview(data: Place, userFavoritePlaces: ActivityPlace[] = []) {
 	const statistic: PlaceStatistic = {
 		rating: data.statistic.rating,
 		numberOfReviews: data.statistic.numberOfReviews,
@@ -32,6 +33,8 @@ export default function resolvePlacePreview(data: Place) {
 		entryFee: _attractionInformation?.entryFee,
 	}
 
+	const isFavorite = !!userFavoritePlaces.find((favoritePlace) => favoritePlace.publicId === data.publicId)
+
 	const place: PlacePreview = {
 		id: data.id,
 		publicId: data.publicId,
@@ -47,6 +50,7 @@ export default function resolvePlacePreview(data: Place) {
 		hours: data.hours,
 		categories,
 		attractionInformation,
+		isFavorite,
 	}
 
 	return place

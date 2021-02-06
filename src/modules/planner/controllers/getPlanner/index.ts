@@ -5,11 +5,10 @@ import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
 import isAccessPlanner from 'modules/planner/utils/isAccessPlanner'
 import { UserDoc } from 'modules/user/models'
-import getUserData from 'modules/user/utils/getUserData'
 
 const getPlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
-	const user = getUserData(req.user as UserDoc)
+	const user = req.user as UserDoc
 
 	if (!plannerId) {
 		res.status(400).send({ message: 'required plannerId' })

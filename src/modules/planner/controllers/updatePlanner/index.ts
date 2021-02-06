@@ -9,12 +9,11 @@ import getActivitiesMapper from 'modules/planner/utils/getActivitiesMappar'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
 import isAccessPlanner from 'modules/planner/utils/isAccessPlanner'
 import { UserDoc } from 'modules/user/models'
-import getUserData from 'modules/user/utils/getUserData'
 
 const updatePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
 	const { name, startDate, endDate, dateLength, rating, isPublic, planners, style }: Planner = req.body
-	const user = getUserData(req.user as UserDoc)
+	const user = req.user as UserDoc
 
 	if (!plannerId) {
 		res.status(400).send({ message: 'required plannerId' })

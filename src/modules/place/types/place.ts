@@ -43,6 +43,7 @@ export interface Place extends PlacePreview {
 
 export interface PlacePreview {
 	id: string
+	isFavorite?: boolean
 	publicId: string
 	displayName: string
 	defaultPhoto: BasicPhoto
