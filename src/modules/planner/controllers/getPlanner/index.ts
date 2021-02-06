@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 
 import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
+import isAccessPlanner from 'modules/planner/utils/isAccessPlanner'
 import { UserDoc } from 'modules/user/models'
 
 const getPlanner = async (req: Request, res: Response) => {
@@ -19,7 +20,7 @@ const getPlanner = async (req: Request, res: Response) => {
 		return res.status(404).send({ message: error || 'not found planner' })
 	}
 
-	if (!planner.isPublic) {
+	if (!planner.isPublic && !(isAccessPlanner(planner, user) && !planner.isPublic)) {
 		return res.status(403).send({ message: 'this planner is not public' })
 	}
 

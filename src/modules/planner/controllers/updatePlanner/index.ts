@@ -49,7 +49,7 @@ const updatePlanner = async (req: Request, res: Response) => {
 		return res.status(404).send({ message: error || 'not found planner' })
 	}
 
-	if (!isAccessPlanner(req.user as UserDoc, plannerUpdated)) {
+	if (!isAccessPlanner(plannerUpdated, req.user as UserDoc)) {
 		return res.status(403).send({ message: "you don't have permission to edit planner" })
 	}
 
