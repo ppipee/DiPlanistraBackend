@@ -36,7 +36,6 @@ export interface ActivityPlan {
 	id?: string
 	hour: ActivityHour
 	place?: ActivityPlace
-	placeId?: string
 	memo?: string
 	distance?: number
 }

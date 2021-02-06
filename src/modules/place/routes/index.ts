@@ -1,8 +1,7 @@
 import express from 'express'
 
 import { getBusinesses, getPlace, getPlaceReviewer } from 'modules/place/controllers'
-
-import withOptionalUser from '../middleware/withOptionalUser'
+import withOptionalUser from 'modules/user/middleware/withOptionalUser'
 
 const router = express.Router()
 

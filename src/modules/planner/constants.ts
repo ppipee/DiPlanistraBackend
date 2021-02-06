@@ -8,7 +8,7 @@ export const DEFAULT_PLANNER: Planner = {
 	writer: undefined,
 	rating: 0,
 	isPublic: false,
-	isOwner: true,
+	isOwner: undefined,
 	planners: [],
 	style: {
 		coverPhoto: undefined,

@@ -1,6 +1,7 @@
 import express from 'express'
 
 import auth from 'modules/user/middleware/auth'
+import withOptionalUser from 'modules/user/middleware/withOptionalUser'
 
 import {
 	createActivity,
@@ -16,7 +17,7 @@ import {
 
 const router = express.Router()
 
-router.get('/:plannerId', auth, getPlanner)
+router.get('/:plannerId', withOptionalUser, getPlanner)
 router.get('/', auth, getPlanners)
 
 router.delete('/:plannerId', auth, deletePlanner)

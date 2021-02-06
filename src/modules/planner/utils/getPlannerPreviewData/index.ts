@@ -2,7 +2,7 @@ import { PlannerPlain } from 'modules/planner/models'
 import { PlannerPreview } from 'modules/planner/types'
 import { UserDoc } from 'modules/user/models'
 
-export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user: UserDoc) {
+export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?: UserDoc) {
 	const plannerPreview: PlannerPreview = {
 		id: plannerPlain._id,
 		name: plannerPlain.name,
@@ -14,7 +14,7 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user: 
 		createdAt: plannerPlain.createdAt,
 		updatedAt: plannerPlain.updatedAt,
 		writer: plannerPlain.writer,
-		isOwner: plannerPlain.writer.id === user._id,
+		isOwner: String(plannerPlain.writer.id) === String(user?._id),
 	}
 
 	return plannerPreview

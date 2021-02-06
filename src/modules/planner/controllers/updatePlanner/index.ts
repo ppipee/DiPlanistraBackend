@@ -16,12 +16,12 @@ const updatePlanner = async (req: Request, res: Response) => {
 	const user = req.user as UserDoc
 
 	if (!plannerId) {
-		res.status(400).send({ message: 'required plannerId' })
+		return res.status(400).send({ message: 'required plannerId' })
 	}
 	const [getError, plannerPlain] = await to(Promise.resolve(PlannerModel.findById(plannerId).lean()))
 
 	if (getError || !plannerPlain) {
-		res.status(404).send({ message: getError || 'not found planner' })
+		return res.status(404).send({ message: getError || 'not found planner' })
 	}
 
 	const activitiesMapper = getActivitiesMapper(plannerPlain)
@@ -46,16 +46,16 @@ const updatePlanner = async (req: Request, res: Response) => {
 	)
 
 	if (error || !plannerUpdated) {
-		res.status(404).send({ message: error || 'not found planner' })
+		return res.status(404).send({ message: error || 'not found planner' })
 	}
 
 	if (!isAccessPlanner(req.user as UserDoc, plannerUpdated)) {
-		res.status(403).send({ message: "you don't have permission to edit planner" })
+		return res.status(403).send({ message: "you don't have permission to edit planner" })
 	}
 
 	const plannerData = await getPlannerData(plannerUpdated, user)
 
-	res.status(200).send(plannerData)
+	return res.status(200).send(plannerData)
 }
 
 export default updatePlanner

@@ -24,6 +24,7 @@ export const userSchema = new Schema(
 		role: String,
 		favoritePlaces: {
 			type: [favoritePlaceSchema],
+			_id: false,
 		},
 	},
 	{ timestamps: true },
