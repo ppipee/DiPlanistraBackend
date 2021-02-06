@@ -9,20 +9,20 @@ const deletePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
 
 	if (!plannerId) {
-		res.status(400).send({ message: 'required plannerId' })
+		return res.status(400).send({ message: 'required plannerId' })
 	}
 
 	const [error, planner] = await to(Promise.resolve(PlannerModel.findByIdAndDelete(plannerId)))
 
 	if (error || !planner) {
-		res.status(404).send({ message: error || 'not found planner' })
+		return res.status(404).send({ message: error || 'not found planner' })
 	}
 
 	if (!isAccessPlanner(req.user as UserDoc, planner)) {
-		res.status(403).send({ message: "you don't have permission to delete planner" })
+		return res.status(403).send({ message: "you don't have permission to delete planner" })
 	}
 
-	res.status(200).send({ message: 'delete success' })
+	return res.status(200).send({ message: 'delete success' })
 }
 
 export default deletePlanner

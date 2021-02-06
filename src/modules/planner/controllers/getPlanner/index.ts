@@ -10,22 +10,22 @@ const getPlanner = async (req: Request, res: Response) => {
 	const user = req.user as UserDoc
 
 	if (!plannerId) {
-		res.status(400).send({ message: 'required plannerId' })
+		return res.status(400).send({ message: 'required plannerId' })
 	}
 
 	const [error, planner] = await to<PlannerPlain>(Promise.resolve(PlannerModel.findById(plannerId).lean()))
 
 	if (error || !planner) {
-		res.status(404).send({ message: error || 'not found planner' })
+		return res.status(404).send({ message: error || 'not found planner' })
 	}
 
 	if (!planner.isPublic) {
-		res.status(403).send({ message: 'this planner is not public' })
+		return res.status(403).send({ message: 'this planner is not public' })
 	}
 
 	const plannerData = await getPlannerData(planner, user)
 
-	res.status(200).send(plannerData)
+	return res.status(200).send(plannerData)
 }
 
 export default getPlanner

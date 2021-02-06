@@ -16,7 +16,7 @@ const getFavoritePlaces = async (req: Request, res: Response) => {
 		}
 	})
 
-	res.send({ favoritePlaces })
+	return res.send({ favoritePlaces })
 }
 
 export default getFavoritePlaces

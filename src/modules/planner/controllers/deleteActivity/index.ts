@@ -8,13 +8,13 @@ const deleteActivity = async (req: Request, res: Response) => {
 	const { day } = req.query
 
 	if (!plannerId || !activityId || !day) {
-		res.status(400).send({ message: 'plannerId or activityId or day was undefined' })
+		return res.status(400).send({ message: 'plannerId or activityId or day was undefined' })
 	}
 
 	const [gettingError, plannerPlain] = await to<PlannerPlain>(Promise.resolve(PlannerModel.findById(plannerId).lean()))
 
 	if (gettingError) {
-		res.send(gettingError)
+		return res.send(gettingError)
 	}
 
 	const planners = [...plannerPlain.planners]
@@ -29,7 +29,7 @@ const deleteActivity = async (req: Request, res: Response) => {
 		Promise.resolve(PlannerModel.findByIdAndUpdate(plannerId, { planners }, { returnOriginal: false })),
 	)
 
-	res.status(200).send({ message: 'delete success' })
+	return res.status(200).send({ message: 'delete success' })
 }
 
 export default deleteActivity

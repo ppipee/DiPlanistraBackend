@@ -32,7 +32,7 @@ const getBusinesses = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		res.send(error)
+		return res.send(error)
 	}
 
 	const businessesPageData: Page<Place> = JSON.parse(data.body)
@@ -44,7 +44,7 @@ const getBusinesses = async (req: Request, res: Response) => {
 		},
 	}
 
-	res.send(businessesPage)
+	return res.send(businessesPage)
 }
 
 export default getBusinesses

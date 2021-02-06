@@ -16,13 +16,13 @@ const getCategories = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		res.send(error)
+		return res.send(error)
 	}
 
 	const categoriesData = JSON.parse(data.body)
 	const categories = categoriesData.categories.map((city: City) => resolveCategory(city))
 
-	res.send({
+	return res.send({
 		categories,
 	})
 }

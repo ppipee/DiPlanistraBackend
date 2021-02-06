@@ -19,7 +19,6 @@ export default async function getPlannerData(plannerPlain: PlannerPlain, user?: 
 
 		return { title: planner.title, description: planner.description, day: planner.day, activities }
 	})
-	console.log(planners)
 
 	const planner: Planner = {
 		...plannerPreview,

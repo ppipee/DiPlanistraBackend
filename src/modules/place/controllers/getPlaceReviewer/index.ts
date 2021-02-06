@@ -18,7 +18,7 @@ const getPlaceReviewer = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		res.send(error)
+		return res.send(error)
 	}
 
 	const reviewsPageData: Page<PlaceReview> = JSON.parse(data.body)
@@ -30,7 +30,7 @@ const getPlaceReviewer = async (req: Request, res: Response) => {
 		},
 	}
 
-	res.send(reviewsPage)
+	return res.send(reviewsPage)
 }
 
 export default getPlaceReviewer

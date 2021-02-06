@@ -12,13 +12,13 @@ const getCities = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		res.send(error)
+		return res.send(error)
 	}
 
 	const citiesData = JSON.parse(data.body)
 	const cities = citiesData.cities.map((city: City) => resolveCity(city))
 
-	res.send({
+	return res.send({
 		cities,
 	})
 }

@@ -14,7 +14,7 @@ const createPlanner = async (req: Request, res: Response) => {
 	const { name, startDate, endDate } = req.body
 
 	if (!name || !startDate || !endDate) {
-		res.status(400).send({ message: 'required name, startDate and endDate' })
+		return res.status(400).send({ message: 'required name, startDate and endDate' })
 	}
 
 	const user = req.user as UserDoc

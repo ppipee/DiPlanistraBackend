@@ -11,9 +11,9 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 			const [user, token] = getUserWithToken(databaseUser, process.env.JWT_SECRET)
 
 			return res.status(200).send({ user, token })
-		} else {
-			return res.status(422).send(info)
 		}
+
+		return res.status(422).send(info)
 	})(req, res, next)
 }
 

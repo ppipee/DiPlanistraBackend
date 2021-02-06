@@ -20,13 +20,13 @@ const getPlace = async (req: Request, res: Response) => {
 	const [error, data] = await to(got.get(url))
 
 	if (error || !data) {
-		res.send(error)
+		return res.send(error)
 	}
 
 	const placeData: Place = JSON.parse(data.body)
 	const place: Place = resolvePlace(placeData, user?.favoritePlaces)
 
-	res.send(place)
+	return res.send(place)
 }
 
 export default getPlace

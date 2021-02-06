@@ -23,7 +23,7 @@ const createUser = async (req: Request, res: Response) => {
 
 	const [user, token] = getUserWithToken(databaseUser, process.env.JWT_SECRET)
 
-	res.status(201).send({ user, token })
+	return res.status(201).send({ user, token })
 }
 
 export default createUser

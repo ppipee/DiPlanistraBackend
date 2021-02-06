@@ -13,13 +13,13 @@ const createActivity = async (req: Request, res: Response) => {
 	const user = req.user as UserDoc
 
 	if (!plannerId) {
-		res.status(400).send({ message: 'required plannerId' })
+		return res.status(400).send({ message: 'required plannerId' })
 	}
 
 	const [gettingError, plannerPlain] = await to<PlannerPlain>(Promise.resolve(PlannerModel.findById(plannerId).lean()))
 
 	if (gettingError || !plannerPlain) {
-		res.status(404).send({ message: gettingError || 'not found planner' })
+		return res.status(404).send({ message: gettingError || 'not found planner' })
 	}
 
 	const plannerInfoIndex = plannerPlain.planners.findIndex((planner) => planner.day === +day)
@@ -37,12 +37,12 @@ const createActivity = async (req: Request, res: Response) => {
 	)
 
 	if (error || !plannerPlainUpdated) {
-		res.send({ message: gettingError || 'cannot create activity' })
+		return res.send({ message: gettingError || 'cannot create activity' })
 	}
 
 	const plannerData = await getPlannerData(plannerPlainUpdated, user)
 
-	res.status(201).send(plannerData)
+	return res.status(201).send(plannerData)
 }
 
 export default createActivity

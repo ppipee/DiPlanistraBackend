@@ -13,12 +13,11 @@ const getPlanners = async (req: Request, res: Response) => {
 	const [error, planners] = await to<PlannerPlain[]>(Promise.resolve(PlannerModel.find({}).lean()))
 
 	if (error || !planners || isEmpty(planners)) {
-		res.status(404).send({ message: error || 'not found planners' })
+		return res.status(404).send({ message: error || 'not found planners' })
 	}
-
 	const plannersData: PlannerPreview[] = planners.map((planner) => getPlannerPreviewData(planner, user))
 
-	res.status(200).send(plannersData)
+	return res.status(200).send(plannersData)
 }
 
 export default getPlanners
