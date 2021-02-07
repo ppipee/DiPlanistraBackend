@@ -82,4 +82,6 @@ export const favoritePlaceSchema: SchemaDefinition = {
 		type: entryFee,
 		_id: false,
 	},
+	isFavorite: Boolean,
+	numberOfReviews: Number,
 }
