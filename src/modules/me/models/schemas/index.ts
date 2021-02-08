@@ -50,6 +50,11 @@ const entryFee: SchemaDefinition = {
 	feeCondition: String || Number,
 }
 
+const domain: SchemaDefinition = {
+	name: String,
+	value: Number,
+}
+
 export const favoritePlaceSchema: SchemaDefinition = {
 	publicId: String,
 	name: String,
@@ -80,6 +85,10 @@ export const favoritePlaceSchema: SchemaDefinition = {
 	},
 	entryFee: {
 		type: entryFee,
+		_id: false,
+	},
+	domain: {
+		type: domain,
 		_id: false,
 	},
 	isFavorite: Boolean,

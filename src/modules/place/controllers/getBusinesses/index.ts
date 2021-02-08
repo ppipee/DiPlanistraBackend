@@ -16,13 +16,14 @@ const getBusinesses = async (req: Request, res: Response) => {
 	const query = req.query
 	const newQuery = convertObjectKey(
 		query,
-		['search', 'rating', 'distance', 'lat', 'lng'],
+		['search', 'rating', 'distance', 'lat', 'lng', 'regions'],
 		[
 			'q',
 			'features.ratingRange',
 			'spatialInfo.radius',
 			'spatialInfo.coordinate.latitude',
 			'spatialInfo.coordinate.longitude',
+			'regions',
 		],
 	)
 
@@ -36,7 +37,7 @@ const getBusinesses = async (req: Request, res: Response) => {
 	}
 
 	const businessesPageData: Page<Place> = JSON.parse(data.body)
-	const businesses = businessesPageData.page.entities.map((review) => resolvePlacePreview(review, user?.favoritePlaces))
+	const businesses = businessesPageData.page.entities.map((place) => resolvePlacePreview(place, user?.favoritePlaces))
 	const businessesPage: Page<PlacePreview> = {
 		page: {
 			...businessesPageData.page,

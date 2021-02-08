@@ -18,6 +18,7 @@ export default function resolveActivityPlace(place: Place) {
 		entryFee: place.attractionInformation?.entryFee,
 		numberOfReviews: place.statistic?.numberOfReviews,
 		isFavorite: true,
+		domain: place.domain,
 	}
 
 	return activityPlace

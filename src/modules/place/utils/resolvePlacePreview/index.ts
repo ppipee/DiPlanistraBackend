@@ -48,6 +48,7 @@ export default function resolvePlacePreview(data: Place, userFavoritePlaces: Act
 		priceRange: data.priceRange,
 		workingHoursStatus,
 		hours: data.hours,
+		domain: data.domain,
 		categories,
 		attractionInformation,
 		isFavorite,

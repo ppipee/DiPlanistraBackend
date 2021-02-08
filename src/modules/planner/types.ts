@@ -54,6 +54,7 @@ export interface ActivityPlace {
 	workingHoursStatus: WorkingHourStatus
 	entryFee?: AttractionInformation['entryFee']
 	numberOfReviews: number
+	domain: NameValue<number>
 }
 
 export interface ActivityHour {

@@ -57,6 +57,7 @@ export interface PlacePreview {
 	attractionInformation?: AttractionInformation
 	hours?: Hour[]
 	categories: Category[]
+	domain: NameValue<number>
 }
 
 export interface PlaceStatistic {
