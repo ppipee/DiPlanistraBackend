@@ -56,7 +56,7 @@ export interface PlacePreview {
 	workingHoursStatus?: WorkingHourStatus
 	attractionInformation?: AttractionInformation
 	hours?: Hour[]
-	categories: Category[]
+	categories: Categories[]
 	domain: NameValue<number>
 }
 
@@ -77,11 +77,17 @@ export interface WorkingHourStatus {
 	closingSoon?: boolean
 }
 
-export interface Category {
+export interface Categories {
 	id: number
 	name: string
 	numberOfBusinesses?: number
-	categories?: Category[]
+	categories?: Categories[]
+}
+
+export interface Category {
+	domain: number
+	locale: string
+	categories: Categories[]
 }
 
 export interface AttractionInformation {

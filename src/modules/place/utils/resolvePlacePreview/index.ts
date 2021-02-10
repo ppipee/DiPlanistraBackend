@@ -1,6 +1,6 @@
 import {
 	AttractionInformation,
-	Category,
+	Categories,
 	Place,
 	PlacePreview,
 	PlaceStatistic,
@@ -21,7 +21,7 @@ export default function resolvePlacePreview(data: Place, userFavoritePlaces: Act
 		closingSoon: data.workingHoursStatus?.closingSoon,
 		message: data.workingHoursStatus?.message,
 	}
-	const categories: Category[] = (data.categories || []).map((category) => resolveCategory(category))
+	const categories: Categories[] = (data.categories || []).map((category) => resolveCategory(category))
 
 	const _attractionInformation = data.attractionInformation
 	const attractionInformation: AttractionInformation = {

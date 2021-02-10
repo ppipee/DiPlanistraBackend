@@ -1,5 +1,5 @@
 import { BasicPhoto, LatLng, NameValue } from 'modules/place/types/common'
-import { AttractionInformation, Category, WorkingHourStatus } from 'modules/place/types/place'
+import { AttractionInformation, Categories, WorkingHourStatus } from 'modules/place/types/place'
 // eslint-disable-next-line import/no-cycle
 import { UserResponse } from 'modules/user/types'
 
@@ -48,7 +48,7 @@ export interface ActivityPlace {
 	coordinate: LatLng
 	defaultPhoto: BasicPhoto
 	mainPhoto: BasicPhoto
-	categories: Category[]
+	categories: Categories[]
 	rating: number
 	priceRange?: NameValue<number> // phase3
 	workingHoursStatus: WorkingHourStatus
