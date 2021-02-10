@@ -1,7 +1,5 @@
 import mongoose, { SchemaDefinition } from 'mongoose'
 
-const Schema = mongoose.Schema
-
 const coordinate: SchemaDefinition = {
 	lat: Number,
 	lng: Number,
