@@ -58,6 +58,7 @@ export interface PlacePreview {
 	hours?: Hour[]
 	categories: Categories[]
 	domain: NameValue<number>
+	targetViewGroupId: number
 }
 
 export interface PlaceStatistic {

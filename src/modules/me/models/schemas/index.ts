@@ -91,4 +91,5 @@ export const favoritePlaceSchema: SchemaDefinition = {
 	},
 	isFavorite: Boolean,
 	numberOfReviews: Number,
+	targetViewGroupId: Number,
 }

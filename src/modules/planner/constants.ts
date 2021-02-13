@@ -14,4 +14,7 @@ export const DEFAULT_PLANNER: Planner = {
 		coverPhoto: undefined,
 		showCover: true,
 	},
+	numberOfBookmarks: 0,
+	numberOfViews: 0,
+	isBookmark: false,
 }

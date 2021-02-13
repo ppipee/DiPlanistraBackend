@@ -19,6 +19,7 @@ export default function resolveActivityPlace(place: Place) {
 		numberOfReviews: place.statistic?.numberOfReviews,
 		isFavorite: true,
 		domain: place.domain,
+		targetViewGroupId: place.targetViewGroupId,
 	}
 
 	return activityPlace

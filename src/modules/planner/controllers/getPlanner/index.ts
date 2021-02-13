@@ -24,6 +24,10 @@ const getPlanner = async (req: Request, res: Response) => {
 		return res.status(403).send({ message: 'this planner is not public' })
 	}
 
+	if (!isAccessPlanner(planner, user)) {
+		PlannerModel.findByIdAndUpdate(plannerId, { numberOfViews: planner.numberOfViews + 1 })
+	}
+
 	const plannerData = await getPlannerData(planner, user)
 
 	return res.status(200).send(plannerData)

@@ -10,7 +10,9 @@ import { UserDoc } from 'modules/user/models'
 const getPlanners = async (req: Request, res: Response) => {
 	const user = req.user as UserDoc
 
-	const [error, planners] = await to<PlannerPlain[]>(Promise.resolve(PlannerModel.find({}).lean()))
+	const [error, planners] = await to<PlannerPlain[]>(
+		Promise.resolve(PlannerModel.find({ 'writer.id': user._id }).lean()),
+	)
 
 	if (error || !planners || isEmpty(planners)) {
 		return res.status(404).send({ message: error || 'not found planners' })

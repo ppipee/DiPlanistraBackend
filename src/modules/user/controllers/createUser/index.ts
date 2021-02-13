@@ -4,8 +4,9 @@ import { SALT_ROUND } from 'core/auth/constants'
 import hashBcrypt from 'core/auth/hashBcrypt'
 
 import { UserModel } from 'modules/user/models'
-import { Role } from 'modules/user/types'
 import getUserWithToken from 'modules/user/utils/getUserWithToken'
+
+import { USER_DEFAULT } from '../../constants'
 
 const createUser = async (req: Request, res: Response) => {
 	const { password } = req.body
@@ -15,8 +16,7 @@ const createUser = async (req: Request, res: Response) => {
 	const databaseUser = new UserModel({
 		...req.body,
 		password: hashingPassword,
-		role: Role.Traveler,
-		favoritePlace: [],
+		...USER_DEFAULT,
 	})
 
 	await databaseUser.save()

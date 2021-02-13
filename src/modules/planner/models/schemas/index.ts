@@ -57,6 +57,8 @@ export const plannerSchema = new Schema(
 			_id: false,
 		},
 		style: { type: plannerStyle, _id: false },
+		numberOfBookmarks: Number,
+		numberOfViews: Number,
 	},
 	{ timestamps: true },
 )

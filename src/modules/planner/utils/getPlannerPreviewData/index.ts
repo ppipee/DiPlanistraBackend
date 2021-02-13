@@ -15,6 +15,8 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?:
 		updatedAt: plannerPlain.updatedAt,
 		writer: plannerPlain.writer,
 		isOwner: String(plannerPlain.writer.id) === String(user?._id),
+		numberOfBookmarks: plannerPlain.numberOfBookmarks,
+		numberOfViews: plannerPlain.numberOfViews,
 	}
 
 	return plannerPreview

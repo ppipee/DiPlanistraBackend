@@ -7,7 +7,7 @@ import { UserDoc, UserModel } from 'modules/user/models'
 
 const saveFavoritePlace = async (req: Request, res: Response) => {
 	const { publicId } = req.body
-	const { id, favoritePlaces } = req.user as UserDoc
+	const { _id, favoritePlaces } = req.user as UserDoc
 
 	if (!publicId) {
 		return res.status(400).send('require publicId to save place to favorite places')
@@ -28,7 +28,7 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 	favoritePlaces.push(placeData)
 
 	const [error, userUpdated] = await to(
-		Promise.resolve(UserModel.findByIdAndUpdate(id, { favoritePlaces }, { returnOriginal: false }).lean()),
+		Promise.resolve(UserModel.findByIdAndUpdate(_id, { favoritePlaces }, { returnOriginal: false }).lean()),
 	)
 
 	if (error) {

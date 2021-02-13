@@ -49,6 +49,7 @@ export default function resolvePlacePreview(data: Place, userFavoritePlaces: Act
 		workingHoursStatus,
 		hours: data.hours,
 		domain: data.domain,
+		targetViewGroupId: data.targetViewGroupId,
 		categories,
 		attractionInformation,
 		isFavorite,

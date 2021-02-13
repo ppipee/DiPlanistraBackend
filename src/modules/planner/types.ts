@@ -20,6 +20,9 @@ export interface Planner extends InitPlanner {
 	createdAt?: Date
 	updatedAt?: Date
 	isOwner: boolean
+	isBookmark?: boolean
+	numberOfBookmarks: number
+	numberOfViews: number
 }
 
 export type PlannerPreview = Omit<Planner, 'planners' | 'style'>
@@ -55,6 +58,7 @@ export interface ActivityPlace {
 	entryFee?: AttractionInformation['entryFee']
 	numberOfReviews: number
 	domain: NameValue<number>
+	targetViewGroupId: number
 }
 
 export interface ActivityHour {
