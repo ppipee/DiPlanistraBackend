@@ -1,6 +1,7 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
 
+import { PlannerModel } from 'modules/planner/models'
 import { UserDoc, UserModel } from 'modules/user/models'
 
 const bookmarkTrip = async (req: Request, res: Response) => {
@@ -25,10 +26,12 @@ const bookmarkTrip = async (req: Request, res: Response) => {
 	)
 
 	if (error) {
-		return res.status(502).send("can't store favorite place to database")
+		return res.status(502).send("can't store trip to database")
 	}
 
-	res.statusMessage = `favorite ${plannerId} success`
+	PlannerModel.findByIdAndUpdate(plannerId, { $inc: { numberOfBookmarks: 1 } })
+
+	res.statusMessage = `bookmark ${plannerId} success`
 	return res.send({ bookmarks: userUpdated.bookmarks })
 }
 

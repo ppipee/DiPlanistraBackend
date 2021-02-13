@@ -25,7 +25,7 @@ const getPlanner = async (req: Request, res: Response) => {
 	}
 
 	if (!isAccessPlanner(planner, user)) {
-		PlannerModel.findByIdAndUpdate(plannerId, { numberOfViews: planner.numberOfViews + 1 })
+		PlannerModel.findByIdAndUpdate(plannerId, { $inc: { numberOfViews: 1 } })
 	}
 
 	const plannerData = await getPlannerData(planner, user)
