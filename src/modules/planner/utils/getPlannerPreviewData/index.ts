@@ -3,6 +3,8 @@ import { PlannerPreview } from 'modules/planner/types'
 import { UserDoc } from 'modules/user/models'
 
 export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?: UserDoc) {
+	const isBookmark = user?.bookmarks && user.bookmarks.includes(String(plannerPlain._id))
+
 	const plannerPreview: PlannerPreview = {
 		id: plannerPlain._id,
 		name: plannerPlain.name,
@@ -17,6 +19,7 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?:
 		isOwner: String(plannerPlain.writer.id) === String(user?._id),
 		numberOfBookmarks: plannerPlain.numberOfBookmarks,
 		numberOfViews: plannerPlain.numberOfViews,
+		isBookmark,
 	}
 
 	return plannerPreview
