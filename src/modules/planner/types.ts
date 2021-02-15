@@ -40,7 +40,8 @@ export interface ActivityPlan {
 	hour: ActivityHour
 	place?: ActivityPlace
 	memo?: string
-	distance?: number
+	distance?: string // distance between current and next place
+	duration?: string
 }
 
 export interface ActivityPlace {

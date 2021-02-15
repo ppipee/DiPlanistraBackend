@@ -3,8 +3,10 @@ import { Request, Response } from 'express'
 
 import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { EditActivity } from 'modules/planner/types'
+import activitiesDistance from 'modules/planner/utils/activitiesDistance'
 import getActivityPlace from 'modules/planner/utils/getActivityPlace'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
+import sortActivities from 'modules/planner/utils/sortActivities'
 import { UserDoc } from 'modules/user/models'
 
 const updateActivity = async (req: Request, res: Response) => {
@@ -34,16 +36,23 @@ const updateActivity = async (req: Request, res: Response) => {
 	}
 
 	const activity = plannerInfo.activities[activityIndex]
-	const activityPlace =
-		activityData.placeId === activity.place?.publicId
-			? activity.place
-			: getActivityPlace(activityData.placeId, user.favoritePlaces)
+	const isNewPlace = activityData.placeId === activity.place?.publicId
+	const activityPlace = isNewPlace ? activity.place : getActivityPlace(activityData.placeId, user.favoritePlaces)
 
 	activity.place = activityPlace
 
 	planners[plannerInfoIndex].activities[activityIndex] = {
 		...activity,
 		...activityData,
+	}
+
+	sortActivities(planners[plannerInfoIndex].activities)
+
+	if (isNewPlace || !activity.distance) {
+		planners[plannerInfoIndex].activities = await activitiesDistance(
+			planners[plannerInfoIndex].activities,
+			activityData.placeId,
+		)
 	}
 
 	const [error, plannerPlainUpdated] = await to<PlannerPlain>(

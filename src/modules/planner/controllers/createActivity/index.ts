@@ -4,8 +4,10 @@ import { omit } from 'lodash'
 
 import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { EditActivity } from 'modules/planner/types'
+import activitiesDistance from 'modules/planner/utils/activitiesDistance'
 import getActivityPlace from 'modules/planner/utils/getActivityPlace'
 import getPlannerData from 'modules/planner/utils/getPlannerData'
+import sortActivities from 'modules/planner/utils/sortActivities'
 import { UserDoc } from 'modules/user/models'
 
 const createActivity = async (req: Request, res: Response) => {
@@ -25,12 +27,17 @@ const createActivity = async (req: Request, res: Response) => {
 	}
 
 	const plannerInfoIndex = plannerPlain.planners.findIndex((planner) => planner.day === +day)
+	const plannerInfo = plannerPlain.planners[plannerInfoIndex]
 
 	const activity = {
 		...omit(activityData, 'placeId'),
 		place: getActivityPlace(activityData.placeId, user.favoritePlaces),
 	}
-	plannerPlain.planners[plannerInfoIndex].activities.push(activity)
+	plannerInfo.activities.push(activity)
+
+	sortActivities(plannerInfo.activities)
+
+	plannerInfo.activities = await activitiesDistance(plannerInfo.activities, activityData.placeId)
 
 	const [error, plannerPlainUpdated] = await to<PlannerPlain>(
 		Promise.resolve(

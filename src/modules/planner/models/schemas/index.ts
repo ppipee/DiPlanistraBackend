@@ -15,6 +15,7 @@ const activityPlan: SchemaDefinition = {
 	place: { type: favoritePlaceSchema, _id: false },
 	memo: String,
 	distance: String,
+	duration: String,
 }
 
 const plannerInfo: SchemaDefinition = {
