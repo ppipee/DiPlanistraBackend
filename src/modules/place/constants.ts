@@ -1,6 +1,6 @@
 import { PlaceCategories } from './types/place'
 
-export const BASE_WONGNAI_URL = 'https://www.wongnai.com'
+export const BASE_WONGNAI_URL = 'https://www.wongnai.com/_api'
 
 export const BASE_ATTRACTIONS_URL = `${BASE_WONGNAI_URL}/${PlaceCategories.Attractions}`
 export const BASE_RESTAURANTS_URL = `${BASE_WONGNAI_URL}/${PlaceCategories.Restaurants}`

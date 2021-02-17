@@ -1,4 +1,3 @@
-import { flatMap } from 'lodash'
 import mongoose, { SchemaDefinition } from 'mongoose'
 
 const Schema = mongoose.Schema
