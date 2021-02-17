@@ -1,4 +1,4 @@
-import { EventContact, EventDetail, EventInformation } from 'modules/event/types/event'
+import { EventDetail, EventInformation } from 'modules/event/types/event'
 import { TatEventDetail } from 'modules/event/types/tatEvent'
 
 export default function resolveEvent(tatEvent: TatEventDetail) {

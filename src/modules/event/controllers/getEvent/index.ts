@@ -5,7 +5,6 @@ import api from 'core/api'
 import { LocalType } from 'core/api/types'
 
 import { BASE_EVENT_URL } from 'modules/event/constants'
-import { EventDetail } from 'modules/event/types/event'
 import { TatEventDetail } from 'modules/event/types/tatEvent'
 import resolveEvent from 'modules/event/utils/resolveEvent'
 
