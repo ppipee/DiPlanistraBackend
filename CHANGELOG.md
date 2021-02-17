@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/ppipee/DiPlanistraBackend/compare/v1.0.0...v1.0.1) (2021-02-17)
+
+
+### Bug Fixes
+
+* rm unused ([4f28ba1](https://github.com/ppipee/DiPlanistraBackend/commit/4f28ba1070dfbae5bd6fe61343fff1dd652faeea))
+
 ## 1.0.0 (2021-02-17)
 
 
