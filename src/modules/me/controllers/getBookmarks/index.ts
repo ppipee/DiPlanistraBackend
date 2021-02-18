@@ -1,3 +1,4 @@
+import to from 'await-to-js'
 import { Request, Response } from 'express'
 
 import getBookmarkTrips from 'modules/me/utils/getBookmarkTrips'
@@ -6,7 +7,11 @@ import { UserDoc } from 'modules/user/models'
 const getBookmarks = async (req: Request, res: Response) => {
 	const { bookmarks } = req.user as UserDoc
 
-	const trips = await getBookmarkTrips(bookmarks)
+	const [error, trips] = await to(getBookmarkTrips(bookmarks))
+
+	if (error) {
+		return res.status(404).send(error.message)
+	}
 
 	return res.send({ bookmarks: trips })
 }

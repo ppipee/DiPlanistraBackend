@@ -20,7 +20,6 @@ export default function initMiddleware(app: Express) {
 	app.use(allowHeader)
 	app.use(bodyParser.json())
 	app.use(bodyParser.urlencoded({ extended: true }))
-	app.use('/public', express.static(path.join(__dirname, 'public')))
 
 	app.use('/', routes)
 }

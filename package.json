@@ -10,7 +10,7 @@
 		"lint": "tsc --noEmit && eslint --ext .ts,.js src",
 		"lint:fix": "yarn lint --fix",
 		"release": "standard-version --no-verify",
-		"postinstall": "rimraf ./build && tsc"
+		"postinstall": "rimraf ./dist && tsc"
 	},
 	"author": "",
 	"license": "ISC",

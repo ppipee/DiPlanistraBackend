@@ -26,6 +26,7 @@ export const userSchema = new Schema(
 			type: [favoritePlaceSchema],
 			_id: false,
 		},
+		bookmarks: [String],
 	},
 	{ timestamps: true },
 )

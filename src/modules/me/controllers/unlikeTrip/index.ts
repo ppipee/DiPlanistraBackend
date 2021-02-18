@@ -12,7 +12,7 @@ const unlikeTrip = async (req: Request, res: Response) => {
 	const plannerIndex = bookmarks.findIndex((tripId) => plannerId === tripId)
 
 	if (plannerIndex === -1) {
-		return res.status(404).send('cannot find this trip in bookmarks')
+		return res.status(404).send('cannot find this trip in your bookmarks')
 	}
 
 	bookmarks.splice(plannerIndex, 1)

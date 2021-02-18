@@ -64,7 +64,7 @@ const getTrips = async (req: Request, res: Response) => {
 
 	const tripsData: PlannerPreview[] = trips.map((planner) => getPlannerPreviewData(planner, user as UserDoc))
 
-	return res.status(200).send(tripsData)
+	return res.status(200).send({ trips: tripsData })
 }
 
 export default getTrips
