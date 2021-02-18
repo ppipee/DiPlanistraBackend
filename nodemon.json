@@ -2,5 +2,5 @@
 	"watch": ["src/**/*"],
 	"ext": "ts, json",
 	"ignore": ["src/**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
-	"exec": "yarn start"
+	"exec": "NODE_PATH=./src ts-node ./src/server.ts"
 }

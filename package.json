@@ -2,14 +2,15 @@
 	"name": "di-planistra-backend",
 	"version": "1.0.1",
 	"description": "",
-	"main": "./src/app.ts",
+	"main": "./src/server.ts",
 	"scripts": {
-		"start": "NODE_PATH=./src ts-node ./src/server.ts",
+		"start": "npm run build && NODE_PATH=./build node build/server.js",
 		"dev": "nodemon",
 		"test": "yarn test",
 		"lint": "tsc --noEmit && eslint --ext .ts,.js src",
 		"lint:fix": "yarn lint --fix",
-		"release": "standard-version --no-verify"
+		"release": "standard-version --no-verify",
+		"build": "rimraf ./build && tsc"
 	},
 	"author": "",
 	"license": "ISC",
@@ -79,7 +80,7 @@
 		"lint-staged": "^10.5.3",
 		"nodemon": "^2.0.6",
 		"prettier": "^2.2.1",
-		"rimraf": "^3.0.2",
+		"rimraf": "3.0.2",
 		"standard-version": "9.1.0"
 	},
 	"jest": {
