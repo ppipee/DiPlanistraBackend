@@ -4,13 +4,13 @@
 	"description": "",
 	"main": "./src/server.ts",
 	"scripts": {
-		"start": "npm run build && NODE_PATH=./build node build/server.js",
+		"start": "NODE_PATH=./dist node dist/server.js",
 		"dev": "nodemon",
 		"test": "yarn test",
 		"lint": "tsc --noEmit && eslint --ext .ts,.js src",
 		"lint:fix": "yarn lint --fix",
 		"release": "standard-version --no-verify",
-		"build": "rimraf ./build && tsc"
+		"postinstall": "rimraf ./build && tsc"
 	},
 	"author": "",
 	"license": "ISC",
