@@ -4,7 +4,8 @@
 		"noEmit": false,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"outDir": "./dist"
+		"outDir": "build",
+		"types": ["jest", "node"]
 	},
 	"exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
 }
