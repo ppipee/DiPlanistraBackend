@@ -29,7 +29,7 @@ const bookmarkTrip = async (req: Request, res: Response) => {
 		return res.status(502).send("can't store trip to database")
 	}
 
-	PlannerModel.findByIdAndUpdate(plannerId, { $inc: { numberOfBookmarks: 1 } })
+	await PlannerModel.findByIdAndUpdate(plannerId, { $inc: { numberOfBookmarks: 1 } })
 
 	res.statusMessage = `bookmark ${plannerId} success`
 	return res.send({ bookmarks: userUpdated.bookmarks })

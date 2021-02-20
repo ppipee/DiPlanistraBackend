@@ -7,7 +7,7 @@ import { UserDoc } from 'modules/user/models'
 import getPlannerPreviewData from '../getPlannerPreviewData'
 
 export default async function getPlannerData(plannerPlain: PlannerPlain, user?: UserDoc): Promise<Planner> {
-	const plannerPreview = getPlannerPreviewData(plannerPlain, user)
+	const plannerPreview = getPlannerPreviewData(plannerPlain, user, false)
 
 	const planners = plannerPlain.planners.map((planner) => {
 		const activities = planner.activities.map((activity) => {

@@ -20,8 +20,6 @@ const api = {
 			url: path,
 		}
 
-		console.log(request)
-
 		return axios.request<Response>(request).then((res) => res.data)
 	},
 }

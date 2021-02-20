@@ -24,7 +24,7 @@ const unlikeTrip = async (req: Request, res: Response) => {
 		return res.status(502).send('cannot remove this trip in database')
 	}
 
-	const trips = await getBookmarkTrips(userUpdated.bookmarks)
+	const trips = await getBookmarkTrips(userUpdated.bookmarks, req.user as UserDoc)
 
 	return res.send({ bookmarks: trips })
 }

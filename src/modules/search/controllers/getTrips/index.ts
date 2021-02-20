@@ -26,19 +26,22 @@ const getTrips = async (req: Request, res: Response) => {
 		sortby: query?.sortby,
 	})
 
-	const [error, planners] = await to(
-		Promise.resolve(PlannerModel.find({ isPublic: true, 'writer.id': { $nin: [user?._id] } })),
-	)
+	const queryDb = {
+		isPublic: true,
+		'writer.id': { $nin: [user?._id] },
+	}
 
-	if (error || !planners || isEmpty(planners)) {
+	if (regions && isNumber(Number(regions))) {
+		queryDb['planners.activities.place.targetViewGroupId'] = Number(regions)
+	}
+
+	const [error, planners] = await to(Promise.resolve(PlannerModel.find(queryDb)))
+
+	if (error) {
 		return res.status(404).send({ message: error })
 	}
 
 	let trips = planners
-
-	if (regions && isNumber(regions)) {
-		trips = filterWithKeyword(trips, ['planners.activities.place.targetViewGroupId'], regions)
-	}
 
 	if (search) {
 		trips = filterWithKeyword(

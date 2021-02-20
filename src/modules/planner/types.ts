@@ -25,13 +25,22 @@ export interface Planner extends InitPlanner {
 	numberOfViews: number
 }
 
-export type PlannerPreview = Omit<Planner, 'planners' | 'style'>
+export interface PlannerPreview extends Omit<Planner, 'planners'> {
+	planners?: PlannerShortInfo[]
+}
 
 export interface PlannerInfo {
 	day: number
 	title?: string
 	description?: string
 	activities: ActivityPlan[]
+}
+
+export interface PlannerShortInfo extends Omit<PlannerInfo, 'activities'> {
+	day: number
+	title?: string
+	description?: string
+	activities: string
 }
 
 export interface ActivityPlan {

@@ -1,14 +1,15 @@
 import Fuse from 'fuse.js'
 
 const OPTIONS: Fuse.IFuseOptions<any> = {
-	includeScore: false,
 	shouldSort: true,
+	distance: 30,
+	threshold: 0.5,
 }
 
-export default function filterWithKeyword<T>(targets: T[], keys: string[], search: string): T[] {
+export default function filterWithKeyword<T>(targets: T[], keys: string[], keyword: string): T[] {
 	const fuse = new Fuse(targets, { ...OPTIONS, keys })
 
-	const fuseTargets = Object.values(fuse.search(search)).map((value) => value.item)
+	const fuseTargets = Object.values(fuse.search(keyword)).map((value) => value.item)
 
 	return fuseTargets
 }

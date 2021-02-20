@@ -41,7 +41,6 @@ const getEvents = async (req: Request<object, object, object, Queries>, res: Res
 		geolocation = `${coordinate.lat},${coordinate.lng}`
 	}
 
-	console.log(geolocation)
 	const [error, data] = await to(
 		api.fetch<{ result: TatEventSearchInfo[] }>({
 			locale: locale as LocalType,
