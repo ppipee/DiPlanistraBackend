@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/ppipee/DiPlanistraBackend/compare/v1.0.3...v1.0.4) (2021-02-20)
+
+
+### Bug Fixes
+
+* fig bug and improve search ([041ca39](https://github.com/ppipee/DiPlanistraBackend/commit/041ca39d02003034905bff1885383933e3831438))
+* fix planner not found ([6d928f7](https://github.com/ppipee/DiPlanistraBackend/commit/6d928f7c7f994559a44bd5391c4e2fd7205b5143))
+
 ### [1.0.3](https://github.com/ppipee/DiPlanistraBackend/compare/v1.0.2...v1.0.3) (2021-02-18)
 
 
