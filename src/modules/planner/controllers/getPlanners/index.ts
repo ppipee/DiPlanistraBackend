@@ -1,6 +1,5 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
-import { isEmpty } from 'lodash'
 
 import { PlannerModel, PlannerPlain } from 'modules/planner/models'
 import { PlannerPreview } from 'modules/planner/types'
@@ -14,8 +13,8 @@ const getPlanners = async (req: Request, res: Response) => {
 		Promise.resolve(PlannerModel.find({ 'writer.id': user._id }).lean()),
 	)
 
-	if (error || !planners || isEmpty(planners)) {
-		return res.status(404).send({ message: error || 'not found planners' })
+	if (error) {
+		return res.status(502).send({ message: error.message })
 	}
 	const plannersData: PlannerPreview[] = planners.map((planner) => getPlannerPreviewData(planner, user))
 
