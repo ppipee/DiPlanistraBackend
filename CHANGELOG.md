@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/ppipee/DiPlanistraBackend/compare/v1.0.4...v1.1.0) (2021-02-21)
+
+
+### Features
+
+* add fav event ([76fb091](https://github.com/ppipee/DiPlanistraBackend/commit/76fb091cfe62f86fd3a62389ef0c0045b6a134dd))
+* add fav-event api ([99aea66](https://github.com/ppipee/DiPlanistraBackend/commit/99aea665efd031d9cfa32f29fbeb5e2c01ad5985))
+
 ### [1.0.4](https://github.com/ppipee/DiPlanistraBackend/compare/v1.0.3...v1.0.4) (2021-02-20)
 
 
