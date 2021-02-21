@@ -5,19 +5,14 @@ import { LocaleType } from 'core/api/types'
 
 import filterArrayExistingValue from 'common/utils/filterArrayExistingValue'
 
-import { BASE_EVENT_URL } from 'modules/event/constants'
-import { TatEventDetail } from 'modules/event/types/tatEvent'
+import getTatEvent from 'modules/event/utils/getTatEvent'
 import resolveEventPreviewerWithEventDetail from 'modules/event/utils/resolveEventPreviewerWithEventDetail/index'
 import { UserDoc } from 'modules/user/models'
 
 export default async function getEvents(favoriteEvents: string[], user: UserDoc, locale?: LocaleType) {
 	const events = await Promise.all(
 		favoriteEvents.map(async (eventId) => {
-			const path = `${BASE_EVENT_URL}/${eventId}`
-
-			const [error, data] = await to(
-				api.fetch<{ result: TatEventDetail }>({ locale: locale as LocaleType, path }),
-			)
+			const [error, data] = await to(getTatEvent(eventId, locale))
 
 			if (error || !data?.result) return null
 

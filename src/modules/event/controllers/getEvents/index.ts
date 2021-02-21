@@ -25,7 +25,7 @@ interface Queries {
 }
 
 const getEvents = async (req: Request<object, object, object, Queries>, res: Response) => {
-	const { locale = 'th', latitude, longitude, regions, sortby = 'date' } = req.query
+	const { locale = 'th', latitude, longitude, regions, sortby = 'distance' } = req.query
 	const user = req.user as UserDoc
 
 	if (!isNumber(Number(regions)) && !(latitude && longitude)) {
