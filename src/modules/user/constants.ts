@@ -5,4 +5,5 @@ export const USER_DEFAULT = {
 	role: Role.Traveler,
 	favoritePlace: [] as ActivityPlace[],
 	bookmarks: [] as string[],
+	events: [] as string[],
 }

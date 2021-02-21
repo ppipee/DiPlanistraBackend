@@ -8,6 +8,9 @@ import {
 	bookmarkTrip,
 	getBookmarks,
 	unlikeTrip,
+	getFavoriteEvents,
+	saveEvent,
+	unlikeEvent,
 } from 'modules/me/controllers'
 import auth from 'modules/user/middleware/auth'
 
@@ -22,5 +25,9 @@ router.delete('/favoritePlaces/:publicId', auth, deleteFavoritePlace)
 router.get('/bookmarks', auth, getBookmarks)
 router.post('/bookmarks', auth, bookmarkTrip)
 router.delete('/bookmarks/:plannerId', auth, unlikeTrip)
+
+router.get('/events', auth, getFavoriteEvents)
+router.post('/events', auth, saveEvent)
+router.delete('/events/:eventId', auth, unlikeEvent)
 
 export default router

@@ -7,12 +7,12 @@ export enum RequestMethod {
 }
 
 export type RequestMethodType = `${RequestMethod}`
-export type LocalType = 'th' | 'en'
+export type LocaleType = 'th' | 'en'
 
 export interface RequestConfig {
 	path: string
 	method?: RequestMethodType
 	params?: Record<string, any>
 	body?: Record<string, any>
-	locale?: LocalType
+	locale?: LocaleType
 }

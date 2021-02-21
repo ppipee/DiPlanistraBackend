@@ -27,6 +27,7 @@ export const userSchema = new Schema(
 			_id: false,
 		},
 		bookmarks: [String],
+		events: [String],
 	},
 	{ timestamps: true },
 )

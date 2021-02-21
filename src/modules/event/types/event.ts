@@ -33,6 +33,7 @@ export interface EventDetail {
 	information: EventInformation
 	contact: EventContact
 	updatedAt: Date
+	isFavorite: boolean
 }
 
 export interface EventSearchInfo {
@@ -42,7 +43,7 @@ export interface EventSearchInfo {
 	longitude: number
 	introduction: string
 	thumbnailUrl: string
-	tags?: string[]
+	tags?: string[] | null
 	periodDate: string
 	eventStart: Date
 	eventEnd: Date
@@ -50,4 +51,5 @@ export interface EventSearchInfo {
 	destination: string
 	updatedAt: Date
 	distance: number
+	isFavorite: boolean
 }

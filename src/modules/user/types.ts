@@ -9,6 +9,7 @@ export interface User {
 	role: Role
 	favoritePlaces?: ActivityPlace[]
 	bookmarks?: string[] // plannerIds
+	events?: string[] // eventId
 }
 
 export type UserResponse = Omit<User, 'password' | 'favoritePlaces'>

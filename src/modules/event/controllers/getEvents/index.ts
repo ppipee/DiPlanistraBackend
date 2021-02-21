@@ -3,20 +3,21 @@ import { Request, Response } from 'express'
 import isNumber from 'lodash/isNumber'
 
 import api from 'core/api'
-import { LocalType } from 'core/api/types'
+import { LocaleType } from 'core/api/types'
 
 import CITIES from 'common/utils/constants/cities'
 
 import { BASE_EVENT_URL } from 'modules/event/constants'
 import { TatEventSearchInfo } from 'modules/event/types/tatEvent'
 import resolveEventPreviewer from 'modules/event/utils/resolveEventPreviewer'
+import { UserDoc } from 'modules/user/models'
 
 const DEFAULT_PARAMS = {
 	numberofresult: 50,
 }
 
 interface Queries {
-	locale: LocalType
+	locale?: LocaleType
 	latitude?: string
 	longitude?: string
 	regions?: string
@@ -24,7 +25,8 @@ interface Queries {
 }
 
 const getEvents = async (req: Request<object, object, object, Queries>, res: Response) => {
-	const { locale, latitude, longitude, regions, sortby = 'date' } = req.query
+	const { locale = 'th', latitude, longitude, regions, sortby = 'date' } = req.query
+	const user = req.user as UserDoc
 
 	if (!isNumber(Number(regions)) && !(latitude && longitude)) {
 		return res.status(400).send('require regions or geolocation')
@@ -43,7 +45,7 @@ const getEvents = async (req: Request<object, object, object, Queries>, res: Res
 
 	const [error, data] = await to(
 		api.fetch<{ result: TatEventSearchInfo[] }>({
-			locale: locale as LocalType,
+			locale: locale as LocaleType,
 			path: BASE_EVENT_URL,
 			params: {
 				...DEFAULT_PARAMS,
@@ -58,7 +60,7 @@ const getEvents = async (req: Request<object, object, object, Queries>, res: Res
 	}
 
 	const tatEvents = data.result
-	const events = tatEvents.map((event) => resolveEventPreviewer(event))
+	const events = tatEvents.map((event) => resolveEventPreviewer(event, user))
 
 	return res.send({ events })
 }
