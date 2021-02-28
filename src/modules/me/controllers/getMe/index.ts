@@ -8,7 +8,7 @@ const getMe = async (req: Request, res: Response) => {
 		if (err) return res.send({ message: err })
 
 		if (databaseUser) {
-			const user = getUserData(databaseUser)
+			const user = getUserData(databaseUser, true)
 
 			return res.status(200).send(user)
 		}

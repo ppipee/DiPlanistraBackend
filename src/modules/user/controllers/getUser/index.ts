@@ -17,7 +17,7 @@ const getUser = async (req: Request, res: Response) => {
 		return res.status(404).send({ message: error })
 	}
 
-	return res.status(200).send(getUserData(user))
+	return res.status(200).send(getUserData(user, true))
 }
 
 export default getUser

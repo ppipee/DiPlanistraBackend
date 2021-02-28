@@ -28,6 +28,7 @@ export const userSchema = new Schema(
 		},
 		bookmarks: [String],
 		events: [String],
+		placeCategories: [Number],
 	},
 	{ timestamps: true },
 )

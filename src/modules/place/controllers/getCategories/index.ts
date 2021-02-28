@@ -1,7 +1,7 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
 
-import { CategoryModal, CategoryPlain } from 'modules/place/models'
+import { CategoryModel, CategoryPlain } from 'modules/place/models'
 import resolveCategory from 'modules/place/utils/resolveCategory'
 
 const getCategories = async (req: Request, res: Response) => {
@@ -11,7 +11,7 @@ const getCategories = async (req: Request, res: Response) => {
 	}
 
 	const [error, data] = await to<CategoryPlain>(
-		Promise.resolve(CategoryModal.findOne({ domain: Number(domain), locale: String(locale) })),
+		Promise.resolve(CategoryModel.findOne({ domain: Number(domain), locale: String(locale) })),
 	)
 
 	if (error || !data) {

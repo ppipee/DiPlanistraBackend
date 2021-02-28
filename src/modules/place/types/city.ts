@@ -1,9 +1,13 @@
-import { BasicPhoto, LatLng } from './common'
+import { LatLng } from './common'
 
 export interface City {
 	id: number
 	name: string
 	coordinate: LatLng
-	coverPicture: BasicPhoto
 	storageViewGroupId: number
+}
+
+export interface Cities {
+	locale: string
+	cities: City[]
 }

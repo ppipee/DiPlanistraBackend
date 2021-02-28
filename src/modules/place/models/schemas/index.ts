@@ -41,3 +41,22 @@ export const categorySchema = new Schema({
 		_id: false,
 	},
 })
+
+const coordinate: SchemaDefinition = {
+	lat: Number,
+	lng: Number,
+}
+
+const city: SchemaDefinition = {
+	id: Number,
+	name: String,
+	coordinate,
+}
+
+export const citySchema = new Schema({
+	locale: String,
+	cities: {
+		type: [city],
+		_id: false,
+	},
+})

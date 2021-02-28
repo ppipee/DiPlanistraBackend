@@ -5,7 +5,6 @@ export default function resolveCity(data: City) {
 		id: data.id,
 		name: data.name,
 		coordinate: data.coordinate,
-		coverPicture: data.coverPicture,
 		storageViewGroupId: data.storageViewGroupId,
 	}
 

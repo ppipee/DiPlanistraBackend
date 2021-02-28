@@ -6,4 +6,5 @@ export const USER_DEFAULT = {
 	favoritePlace: [] as ActivityPlace[],
 	bookmarks: [] as string[],
 	events: [] as string[],
+	placeCategories: null as number[],
 }

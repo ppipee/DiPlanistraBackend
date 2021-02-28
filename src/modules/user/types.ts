@@ -10,9 +10,10 @@ export interface User {
 	favoritePlaces?: ActivityPlace[]
 	bookmarks?: string[] // plannerIds
 	events?: string[] // eventId
+	placeCategories?: number[]
 }
 
-export type UserResponse = Omit<User, 'password' | 'favoritePlaces'>
+export type UserResponse = Omit<User, 'password' | 'favoritePlaces' | 'bookmarks' | 'events' | 'categories'>
 
 export enum Role {
 	Traveler = 'traveler',
