@@ -7,7 +7,15 @@ import { UserDoc, UserModel } from 'modules/user/models'
 
 const saveFavoritePlace = async (req: Request, res: Response) => {
 	const { publicId } = req.body
-	const { _id, favoritePlaces } = req.user as UserDoc
+	const { _id: id } = req.user as UserDoc
+
+	const [getError, user] = await to(Promise.resolve(UserModel.findById(id).lean()))
+
+	if (getError) {
+		return res.status(502).send('cannot find user in database')
+	}
+
+	const favoritePlaces = user.favoritePlaces
 
 	if (!publicId) {
 		return res.status(400).send('require publicId to save place to favorite places')
@@ -28,7 +36,7 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 	favoritePlaces.push(placeData)
 
 	const [error, userUpdated] = await to(
-		Promise.resolve(UserModel.findByIdAndUpdate(_id, { favoritePlaces }, { returnOriginal: false }).lean()),
+		Promise.resolve(UserModel.findByIdAndUpdate(id, { favoritePlaces }, { returnOriginal: false }).lean()),
 	)
 
 	if (error) {

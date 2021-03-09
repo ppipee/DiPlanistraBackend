@@ -1,3 +1,4 @@
+export { default as getFavorite } from './getFavorite'
 export { default as getFavoritePlaces } from './getFavoritePlaces'
 export { default as saveFavoritePlace } from './saveFavoritePlace'
 export { default as deleteFavoritePlace } from './deleteFavoritePlace'

@@ -5,7 +5,13 @@ import { UserDoc, UserModel } from 'modules/user/models'
 
 export default async function deleteFavoritePlace(req: Request, res: Response) {
 	const { publicId } = req.params
-	const user = req.user as UserDoc
+	const { _id: id } = req.user as UserDoc
+
+	const [getError, user] = await to(Promise.resolve(UserModel.findById(id).lean()))
+
+	if (getError) {
+		return res.status(502).send('cannot find user in database')
+	}
 
 	const favoritePlaces = [...user.favoritePlaces]
 	const placeIndex = favoritePlaces.findIndex((place) => place.publicId === publicId)

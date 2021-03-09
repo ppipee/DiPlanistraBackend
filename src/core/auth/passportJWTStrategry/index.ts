@@ -21,6 +21,10 @@ const passportJWTStrategy = new JWTStrategy(
 			return cb(err)
 		}
 
+		user.favoritePlaces = []
+		user.events = []
+		user.bookmarks = []
+
 		return cb(null, user)
 	},
 )

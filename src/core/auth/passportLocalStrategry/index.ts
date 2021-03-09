@@ -21,6 +21,10 @@ const passportLocalStrategy = new Strategy(
 			return cb(null, false)
 		}
 		if (compareBcrypt(password, user.password)) {
+			user.favoritePlaces = []
+			user.events = []
+			user.bookmarks = []
+
 			return cb(null, user)
 		}
 

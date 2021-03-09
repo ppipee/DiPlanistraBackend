@@ -13,12 +13,15 @@ import {
 	unlikeEvent,
 	savePlaceCategories,
 	newPlaceCategories,
+	getFavorite,
 } from 'modules/me/controllers'
 import auth from 'modules/user/middleware/auth'
 
 const router = express.Router()
 
 router.get('/', getMe)
+
+router.get('/favorite', auth, getFavorite)
 
 router.get('/favoritePlaces', auth, getFavoritePlaces)
 router.post('/favoritePlaces', auth, saveFavoritePlace)
