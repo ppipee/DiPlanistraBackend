@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/ppipee/DiPlanistraBackend/compare/v1.2.0...v1.3.0) (2021-03-09)
+
+
+### Features
+
+* improve favorite api for query domain ([8e306d8](https://github.com/ppipee/DiPlanistraBackend/commit/8e306d878cbd7f5649e08b9136526a5d00e9a078))
+
 ## [1.2.0](https://github.com/ppipee/DiPlanistraBackend/compare/v1.1.0...v1.2.0) (2021-02-28)
 
 
