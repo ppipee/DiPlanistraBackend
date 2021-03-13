@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/ppipee/DiPlanistraBackend/compare/v1.3.0...v1.3.1) (2021-03-13)
+
+
+### Bug Fixes
+
+* set empty when get user data ([5cd5396](https://github.com/ppipee/DiPlanistraBackend/commit/5cd539606ddb203fd7c6eabf0f1b23b020540c94))
+
 ## [1.3.0](https://github.com/ppipee/DiPlanistraBackend/compare/v1.2.0...v1.3.0) (2021-03-09)
 
 
