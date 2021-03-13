@@ -10,9 +10,9 @@ export default function getUserData(user: UserDoc, withData?: boolean) {
 	}
 
 	if (withData) {
-		userData.favoritePlaces = user.favoritePlaces
-		userData.bookmarks = user.bookmarks
-		userData.events = user.events
+		userData.favoritePlaces = []
+		userData.bookmarks = []
+		userData.events = []
 		userData.placeCategories = user.placeCategories
 	}
 

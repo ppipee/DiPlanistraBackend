@@ -20,7 +20,9 @@ export default async function deleteFavoritePlace(req: Request, res: Response) {
 		return res.status(404).send('cannot file this place in favoritePlaces')
 	}
 
+	const placeDomain = favoritePlaces[placeIndex].domain.value
 	favoritePlaces.splice(placeIndex, 1)
+
 	const [error, userUpdated] = await to(
 		Promise.resolve(UserModel.findByIdAndUpdate(user._id, { favoritePlaces }, { returnOriginal: false }).lean()),
 	)
@@ -29,5 +31,7 @@ export default async function deleteFavoritePlace(req: Request, res: Response) {
 		return res.status(502).send('cannot remove this place in database')
 	}
 
-	return res.send({ favoritePlaces: userUpdated.favoritePlaces })
+	const favoritePlacesResponse = userUpdated.favoritePlaces.filter((place) => place.domain.value === placeDomain)
+
+	return res.send({ favoritePlaces: favoritePlacesResponse })
 }

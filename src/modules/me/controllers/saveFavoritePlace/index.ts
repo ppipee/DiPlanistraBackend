@@ -44,7 +44,12 @@ const saveFavoritePlace = async (req: Request, res: Response) => {
 	}
 
 	res.statusMessage = `favorite ${placeData.publicId} success`
-	return res.send({ favoritePlaces: userUpdated.favoritePlaces })
+
+	const favoritePlacesResponse = userUpdated.favoritePlaces.filter(
+		(place) => place.domain.value === placeData.domain.value,
+	)
+
+	return res.send({ favoritePlaces: favoritePlacesResponse })
 }
 
 export default saveFavoritePlace
