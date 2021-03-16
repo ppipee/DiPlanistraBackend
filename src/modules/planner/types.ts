@@ -1,13 +1,17 @@
+/* eslint-disable import/no-cycle */
 import { BasicPhoto, LatLng, NameValue } from 'modules/place/types/common'
 import { AttractionInformation, Categories, WorkingHourStatus } from 'modules/place/types/place'
-// eslint-disable-next-line import/no-cycle
 import { UserResponse } from 'modules/user/types'
+
+import { PlannerState } from './constants'
 
 export interface InitPlanner {
 	name: string
 	startDate: Date
 	endDate: Date
 }
+
+export type PlannerStateType = typeof PlannerState[keyof typeof PlannerState]
 
 export interface Planner extends InitPlanner {
 	id?: string
@@ -23,6 +27,7 @@ export interface Planner extends InitPlanner {
 	isBookmark?: boolean
 	numberOfBookmarks: number
 	numberOfViews: number
+	state: PlannerStateType
 }
 
 export interface PlannerPreview extends Omit<Planner, 'planners'> {

@@ -1,7 +1,6 @@
 import mongoose, { SchemaDefinition } from 'mongoose'
 
 import { favoritePlaceSchema } from 'modules/me/models/schemas'
-import { UserModel } from 'modules/user/models'
 
 const Schema = mongoose.Schema
 
@@ -60,6 +59,7 @@ export const plannerSchema = new Schema(
 		style: { type: plannerStyle, _id: false },
 		numberOfBookmarks: Number,
 		numberOfViews: Number,
+		state: Number,
 	},
 	{ timestamps: true },
 )

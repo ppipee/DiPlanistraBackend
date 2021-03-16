@@ -19,6 +19,7 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?:
 		updatedAt: plannerPlain.updatedAt,
 		writer: plannerPlain.writer,
 		style: plannerPlain.style,
+		state: plannerPlain.state,
 		isOwner: String(plannerPlain.writer.id) === String(user?._id),
 		numberOfBookmarks: plannerPlain.numberOfBookmarks,
 		numberOfViews: plannerPlain.numberOfViews,

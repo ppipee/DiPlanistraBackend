@@ -1,4 +1,10 @@
+/* eslint-disable import/no-cycle */
 import { Planner } from './types'
+
+export const PlannerState = {
+	Plan: 1,
+	Travel: 2,
+} as const
 
 export const DEFAULT_PLANNER: Planner = {
 	name: undefined,
@@ -17,4 +23,5 @@ export const DEFAULT_PLANNER: Planner = {
 	numberOfBookmarks: 0,
 	numberOfViews: 0,
 	isBookmark: false,
+	state: PlannerState.Plan,
 }
