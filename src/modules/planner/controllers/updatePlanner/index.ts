@@ -12,7 +12,7 @@ import { UserDoc } from 'modules/user/models'
 
 const updatePlanner = async (req: Request, res: Response) => {
 	const { plannerId } = req.params
-	const { name, startDate, endDate, dateLength, rating, isPublic, planners, style }: Planner = req.body
+	const { name, startDate, endDate, dateLength, rating, isPublic, planners, style, state }: Planner = req.body
 	const user = req.user as UserDoc
 
 	if (!plannerId) {
@@ -38,6 +38,7 @@ const updatePlanner = async (req: Request, res: Response) => {
 		rating,
 		isPublic,
 		style,
+		state,
 		planners: plannersUpdate,
 	})
 
