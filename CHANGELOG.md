@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.1...v1.4.2) (2021-03-21)
+
+
+### Bug Fixes
+
+* prevent placeID is undefined when POST or PUT to planner api and force set locale to TH when get event ([9e1604e](https://github.com/ppipee/DiPlanistraBackend/commit/9e1604ed451e80b99a358cddbd429d10cd1e1771))
+
 ### [1.4.1](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.0...v1.4.1) (2021-03-18)
 
 
