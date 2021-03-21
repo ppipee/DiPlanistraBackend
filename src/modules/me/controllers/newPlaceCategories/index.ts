@@ -21,10 +21,6 @@ const newPlaceCategories = async (req: Request, res: Response) => {
 	const { locale = 'th' } = req.query as QueryProps
 	const { _id } = req.user as UserDoc
 
-	if (!categories || isEmpty(categories)) {
-		return res.status(400).send('require categories of place to store categories')
-	}
-
 	const [categoriesError, categoriesData] = await to<CategoryPlain>(
 		Promise.resolve(CategoryModel.findOne({ domain: DomainValue.ATTRACTION, locale }).lean()),
 	)
