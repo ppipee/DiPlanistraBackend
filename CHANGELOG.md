@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.2...v1.4.3) (2021-03-21)
+
+
+### Bug Fixes
+
+* enable request when categories is empty or undefined ([dc66cf6](https://github.com/ppipee/DiPlanistraBackend/commit/dc66cf6e54991768f7b0fbcf199efa644ef882ae))
+
 ### [1.4.2](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.1...v1.4.2) (2021-03-21)
 
 
