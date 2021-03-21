@@ -1,11 +1,8 @@
 import to from 'await-to-js'
 import { Request, Response } from 'express'
 
-import api from 'core/api'
 import { LocaleType } from 'core/api/types'
 
-import { BASE_EVENT_URL } from 'modules/event/constants'
-import { TatEventDetail } from 'modules/event/types/tatEvent'
 import getTatEvent from 'modules/event/utils/getTatEvent'
 import resolveEvent from 'modules/event/utils/resolveEvent'
 import { UserDoc } from 'modules/user/models'

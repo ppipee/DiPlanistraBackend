@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "NODE_PATH=./dist node dist/server.js",
 		"dev": "nodemon",
-		"test": "yarn test",
+		"test": "jest --coverage",
 		"lint": "tsc --noEmit && eslint --ext .ts,.js src",
 		"lint:fix": "yarn lint --fix",
 		"release": "standard-version --no-verify",

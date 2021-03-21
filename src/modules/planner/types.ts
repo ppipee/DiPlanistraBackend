@@ -28,6 +28,7 @@ export interface Planner extends InitPlanner {
 	numberOfBookmarks: number
 	numberOfViews: number
 	state: PlannerStateType
+	regions?: number[]
 }
 
 export interface PlannerPreview extends Omit<Planner, 'planners'> {

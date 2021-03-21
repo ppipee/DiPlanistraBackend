@@ -45,7 +45,7 @@ const getEvents = async (req: Request<object, object, object, Queries>, res: Res
 
 	const [error, data] = await to(
 		api.fetch<{ result: TatEventSearchInfo[] }>({
-			locale: locale as LocaleType,
+			locale: 'th', // cuz tat api not support EN event name
 			path: BASE_EVENT_URL,
 			params: {
 				...DEFAULT_PARAMS,

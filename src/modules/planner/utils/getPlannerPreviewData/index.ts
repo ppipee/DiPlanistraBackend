@@ -6,6 +6,11 @@ import getPlannerShortInfo from '../getPlannerShortInfo'
 
 export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?: UserDoc, shortInfo = true) {
 	const isBookmark = Boolean(user?.bookmarks && user.bookmarks.includes(String(plannerPlain._id)))
+	const regions = plannerPlain.planners.reduce((plannerRegionIds, planner) => {
+		const regionIds = planner.activities.map((activity) => activity.place.targetViewGroupId)
+
+		return [...plannerRegionIds, ...regionIds]
+	}, [] as number[])
 
 	const plannerPreview: PlannerPreview = {
 		id: plannerPlain._id,
@@ -24,6 +29,7 @@ export default function getPlannerPreviewData(plannerPlain: PlannerPlain, user?:
 		numberOfBookmarks: plannerPlain.numberOfBookmarks,
 		numberOfViews: plannerPlain.numberOfViews,
 		isBookmark,
+		regions: [...new Set(regions)],
 	}
 
 	if (shortInfo) {

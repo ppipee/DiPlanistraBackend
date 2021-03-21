@@ -15,8 +15,8 @@ const updateActivity = async (req: Request, res: Response) => {
 	const activityData: EditActivity = req.body
 	const user = req.user as UserDoc
 
-	if (!plannerId) {
-		return res.status(400).send({ message: 'required plannerId' })
+	if (!plannerId || !activityData.hour || !activityData.placeId) {
+		return res.status(400).send({ message: 'required plannerId, hour, placeID' })
 	}
 
 	const [gettingError, plannerPlain] = await to<PlannerPlain>(Promise.resolve(PlannerModel.findById(plannerId).lean()))

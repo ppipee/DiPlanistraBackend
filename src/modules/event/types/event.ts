@@ -15,34 +15,11 @@ export interface EventContact {
 	urls: string[]
 }
 
-export interface EventDetail {
+export interface BasicEvent {
 	eventId: string
 	name: string
 	latitude: number
 	longitude: number
-	picture: {
-		webUrls: string[]
-		mobileUrls: string[]
-	}
-	tags?: string[]
-	periodDate: string
-	eventStart: Date
-	eventEnd: Date
-	location: string
-	destination: string
-	information: EventInformation
-	contact: EventContact
-	updatedAt: Date
-	isFavorite: boolean
-}
-
-export interface EventSearchInfo {
-	eventId: string
-	name: string
-	latitude: number
-	longitude: number
-	introduction: string
-	thumbnailUrl: string
 	tags?: string[] | null
 	periodDate: string
 	eventStart: Date
@@ -50,6 +27,20 @@ export interface EventSearchInfo {
 	location: string
 	destination: string
 	updatedAt: Date
-	distance: number
 	isFavorite: boolean
+}
+
+export interface EventDetail extends BasicEvent {
+	picture: {
+		webUrls: string[]
+		mobileUrls: string[]
+	}
+	information: EventInformation
+	contact: EventContact
+}
+
+export interface EventSearchInfo extends BasicEvent {
+	introduction: string
+	thumbnailUrl: string
+	distance: number
 }

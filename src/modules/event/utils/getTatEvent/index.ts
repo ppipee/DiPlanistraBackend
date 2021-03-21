@@ -9,5 +9,5 @@ import { TatEventDetail } from 'modules/event/types/tatEvent'
 export default async function getTatEvent(eventId: string, locale?: LocaleType) {
 	const path = `${BASE_EVENT_URL}/${eventId}`
 
-	return api.fetch<{ result: TatEventDetail }>({ locale, path })
+	return api.fetch<{ result: TatEventDetail }>({ locale: 'th', path })
 }

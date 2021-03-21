@@ -9,8 +9,8 @@ export default async function activityDistance(originActivity: ActivityPlan, des
 		destinationActivity.place.coordinate,
 	)
 
-	activity.distance = distance.text
-	activity.duration = duration.text
+	activity.distance = distance?.text
+	activity.duration = duration?.text
 
 	return activity
 }

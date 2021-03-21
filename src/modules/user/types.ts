@@ -13,7 +13,7 @@ export interface User {
 	placeCategories?: number[]
 }
 
-export type UserResponse = Omit<User, 'password' | 'favoritePlaces' | 'bookmarks' | 'events' | 'categories'>
+export type UserResponse = Omit<User, 'password' | 'favoritePlaces' | 'bookmarks' | 'events' | 'placeCategories'>
 
 export enum Role {
 	Traveler = 'traveler',
