@@ -1,4 +1,4 @@
-import { Client, DistanceMatrixRowElement, TravelMode, UnitSystem } from '@googlemaps/google-maps-services-js'
+import { Client, DistanceMatrixRowElement, TravelMode } from '@googlemaps/google-maps-services-js'
 import to from 'await-to-js'
 
 import { LatLng } from 'modules/place/types/common'
@@ -11,13 +11,15 @@ export default async function getDistance(origin: LatLng, destination: LatLng): 
 
 	const client = new Client({})
 	const [error, distance] = await to(
-		client.distancematrix({
-			params: {
-				...SETTING,
-				origins: [origin],
-				destinations: [destination],
-			},
-		}),
+		Promise.resolve(
+			client.distancematrix({
+				params: {
+					...SETTING,
+					origins: [origin],
+					destinations: [destination],
+				},
+			}),
+		),
 	)
 
 	if (error) {
