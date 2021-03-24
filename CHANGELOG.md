@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.5](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.4...v1.4.5) (2021-03-24)
+
+
+### Bug Fixes
+
+* distance ([4549c0a](https://github.com/ppipee/DiPlanistraBackend/commit/4549c0ad45e54f7b68d8fd84442e1c0b1d00ee1f))
+
 ### [1.4.4](https://github.com/ppipee/DiPlanistraBackend/compare/v1.4.3...v1.4.4) (2021-03-23)
 
 
