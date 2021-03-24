@@ -48,7 +48,7 @@ const updateActivity = async (req: Request, res: Response) => {
 
 	sortActivities(planners[plannerInfoIndex].activities)
 
-	if (isNewPlace || !activity.distance) {
+	if (isNewPlace) {
 		planners[plannerInfoIndex].activities = await activitiesDistance(
 			planners[plannerInfoIndex].activities,
 			activityData.placeId,

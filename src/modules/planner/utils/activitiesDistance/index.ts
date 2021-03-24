@@ -6,9 +6,7 @@ import activityDistance from '../activityDistance'
 
 export default async function activitiesDistance(activities: ActivityPlan[], targetPublicId?: string) {
 	if (targetPublicId) {
-		console.log(targetPublicId)
 		const newActivities = [...activities]
-		const index = activities.findIndex((activity) => activity.place.publicId === targetPublicId)
 
 		await Promise.all(
 			activities.map(async (activity, index) => {
